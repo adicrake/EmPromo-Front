@@ -1,0 +1,77 @@
+/* Estilo base */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background: #f5f0e6; /* bege suave */
+  color: #3b2f2f; /* castanho escuro */
+}
+
+/* Cabeçalho */
+header {
+  background: #8b5e3c; /* castanho médio */
+  color: white;
+  padding: 1rem;
+  text-align: center;
+}
+
+header h1 {
+  margin: 0;
+}
+
+nav {
+  margin-top: 10px;
+}
+
+nav button {
+  background: #f5f0e6;
+  color: #3b2f2f;
+  border: none;
+  padding: 0.5rem 1rem;
+  margin: 5px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+nav button:hover {
+  background: #d4b59c;
+}
+
+/* Lista de promoções */
+#lista-promocoes {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+  padding: 20px;
+}
+
+.promo-card {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  padding: 15px;
+  transition: transform 0.2s;
+}
+
+.promo-card:hover {
+  transform: scale(1.02);
+}
+
+.promo-card h2 {
+  margin-top: 0;
+  font-size: 1.2rem;
+  color: #8b5e3c;
+}
+
+.promo-card p {
+  margin: 5px 0;
+}
+
+footer {
+  background: #8b5e3c;
+  color: white;
+  text-align: center;
+  padding: 1rem;
+  margin-top: 20px;
+}
