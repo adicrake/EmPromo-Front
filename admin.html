@@ -1,1 +1,95 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Painel Administrativo - EmPromo</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f5f2eb;
+      padding: 20px;
+    }
+    h1 {
+      color: #5a3e2b;
+    }
+    form {
+      background: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      max-width: 400px;
+    }
+    label {
+      display: block;
+      margin-top: 10px;
+      font-weight: bold;
+    }
+    input, textarea {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+    button {
+      margin-top: 15px;
+      padding: 10px;
+      width: 100%;
+      border: none;
+      border-radius: 6px;
+      background: #5a3e2b;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #7a523c;
+    }
+  </style>
+</head>
+<body>
+  <h1>Painel Administrativo</h1>
+  <form id="produtoForm">
+    <label>Nome do Produto</label>
+    <input type="text" name="nome" required>
+
+    <label>Descrição</label>
+    <textarea name="descricao" rows="3" required></textarea>
+
+    <label>Preço Médio</label>
+    <input type="number" name="precoMedio" required>
+
+    <label>Preço em Promoção</label>
+    <input type="number" name="precoPromocao" required>
+
+    <label>Loja</label>
+    <input type="text" name="loja" required>
+
+    <label>Link</label>
+    <input type="url" name="link">
+
+    <label>Telefone</label>
+    <input type="text" name="telefone">
+
+    <label>Tempo da Promoção (data final)</label>
+    <input type="datetime-local" name="tempoRestante" required>
+
+    <label>Imagem (URL)</label>
+    <input type="url" name="imagem">
+
+    <label>Código de Oferta</label>
+    <input type="text" name="codigoOferta" required>
+
+    <button type="submit">Adicionar Promoção</button>
+  </form>
+
+  <script>
+    document.getElementById("produtoForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+      alert("Aqui vamos salvar os dados no futuro.");
+    });
+  </script>
+</body>
+</html>
 
