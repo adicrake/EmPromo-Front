@@ -1,124 +1,62 @@
 <!DOCTYPE html>
 <html lang="pt">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Administração - EmPromo</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin - EmPromo</title>
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 20px;
-      background: #f4f4f4;
-    }
-    h1 {
-      text-align: center;
-    }
-    form {
-      max-width: 500px;
-      margin: auto;
-      background: white;
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
-    }
-    label {
-      display: block;
-      margin-top: 10px;
-      font-weight: bold;
-    }
-    input, textarea {
-      width: 100%;
-      padding: 8px;
-      margin-top: 5px;
-      border-radius: 5px;
-      border: 1px solid #ccc;
-    }
-    button {
-      margin-top: 15px;
-      padding: 10px;
-      width: 100%;
-      background: #28a745;
-      color: white;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      font-size: 16px;
-    }
-    button:hover {
-      background: #218838;
-    }
+    body { font-family: Arial, sans-serif; background: #f4f4f4; padding: 20px; }
+    h1 { text-align: center; }
+    form { max-width: 500px; margin: auto; background: white; padding: 20px; border-radius: 10px; }
+    input, textarea, button { width: 100%; margin: 10px 0; padding: 10px; }
+    button { background: green; color: white; border: none; border-radius: 5px; cursor: pointer; }
   </style>
 </head>
 <body>
-  <h1>Cadastro de Promoções</h1>
-
-  <form id="formPromo">
-    <label>Nome do Produto</label>
-    <input type="text" id="nome" required />
-
-    <label>Descrição</label>
-    <textarea id="descricao" required></textarea>
-
-    <label>Preço Médio</label>
-    <input type="number" id="precoMedio" required />
-
-    <label>Preço em Promoção</label>
-    <input type="number" id="precoPromocao" required />
-
-    <label>Loja</label>
-    <input type="text" id="loja" required />
-
-    <label>Link do Produto</label>
-    <input type="text" id="link" required />
-
-    <label>Telefone da Loja</label>
-    <input type="text" id="telefone" required />
-
-    <label>Data de Fim da Promoção</label>
-    <input type="date" id="tempoRestante" required />
-
-    <button type="submit">Salvar Publicação</button>
+  <h1>Painel Administrativo</h1>
+  <form id="form-promocao">
+    <input type="text" id="nome" placeholder="Nome do produto" required>
+    <textarea id="descricao" placeholder="Descrição" required></textarea>
+    <input type="number" id="precoMedio" placeholder="Preço médio" required>
+    <input type="number" id="precoPromocao" placeholder="Preço promocional" required>
+    <input type="text" id="loja" placeholder="Loja" required>
+    <input type="url" id="link" placeholder="Link do produto" required>
+    <input type="text" id="telefone" placeholder="Telefone da loja" required>
+    <input type="date" id="tempoRestante" required>
+    <button type="submit">Salvar Promoção</button>
   </form>
 
   <script>
-    document.getElementById("formPromo").addEventListener("submit", async (e) => {
+    const API_URL = "https://empromo-api.onrender.com";
+
+    document.getElementById("form-promocao").addEventListener("submit", async (e) => {
       e.preventDefault();
 
-      const nome = document.getElementById("nome").value;
-      const descricao = document.getElementById("descricao").value;
-      const precoMedio = parseFloat(document.getElementById("precoMedio").value);
-      const precoPromocao = parseFloat(document.getElementById("precoPromocao").value);
-      const loja = document.getElementById("loja").value;
-      const link = document.getElementById("link").value;
-      const telefone = document.getElementById("telefone").value;
-      const tempoRestante = document.getElementById("tempoRestante").value;
-
       const novaPromocao = {
-        nome,
-        descricao,
-        precoMedio,
-        precoPromocao,
-        loja,
-        link,
-        telefone,
-        tempoRestante
+        nome: document.getElementById("nome").value,
+        descricao: document.getElementById("descricao").value,
+        precoMedio: parseFloat(document.getElementById("precoMedio").value),
+        precoPromocao: parseFloat(document.getElementById("precoPromocao").value),
+        loja: document.getElementById("loja").value,
+        link: document.getElementById("link").value,
+        telefone: document.getElementById("telefone").value,
+        tempoRestante: document.getElementById("tempoRestante").value
       };
 
       try {
-        const res = await fetch("https://empromo-api.onrender.com/promocoes", {
+        const resposta = await fetch(`${API_URL}/promocoes`, {
           method: "POST",
-          headers: {
-            "Content-Type": "application/json"
-          },
+          headers: { "Content-Type": "application/json" },
           body: JSON.stringify(novaPromocao)
         });
 
-        const data = await res.json();
-        alert(data.message || "Erro ao salvar promoção");
+        if (!resposta.ok) throw new Error("Erro ao salvar promoção");
 
-        e.target.reset();
+        alert("Promoção salva com sucesso!");
+        document.getElementById("form-promocao").reset();
+
       } catch (err) {
-        console.error("Erro:", err);
+        console.error(err);
         alert("Erro ao conectar com a API");
       }
     });
