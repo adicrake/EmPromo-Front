@@ -3,26 +3,55 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>EmPromo - Promoções em Destaque</title>
-  <link rel="stylesheet" href="style.css">
+  <title>EmPromo - Promoções</title>
+  <style>
+    body { font-family: Arial, sans-serif; background: #f9f9f9; margin: 0; padding: 20px; }
+    h1 { text-align: center; }
+    .container { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
+    .card { background: white; padding: 15px; border-radius: 10px; box-shadow: 0 2px 6px rgba(0,0,0,0.2); }
+    .card h2 { margin: 0 0 10px; }
+    .preco { font-size: 18px; font-weight: bold; color: green; }
+    .preco-antigo { text-decoration: line-through; color: red; font-size: 14px; }
+  </style>
 </head>
 <body>
-  <header>
-    <h1>EmPromo</h1>
-    <nav>
-      <button onclick="carregarPromocoes()">Todas Promoções</button>
-      <button onclick="filtrarHoje()">Acabam Hoje</button>
-    </nav>
-  </header>
+  <h1>🔥 Promoções em Destaque 🔥</h1>
+  <div id="promocoes" class="container"></div>
 
-  <main id="lista-promocoes">
-    <p>Carregando promoções...</p>
-  </main>
+  <script>
+    const API_URL = "https://empromo-api.onrender.com";
 
-  <footer>
-    <p>© 2025 EmPromo - Promoções que valem a pena</p>
-  </footer>
+    async function carregarPromocoes() {
+      try {
+        const resposta = await fetch(`${API_URL}/promocoes`);
+        if (!resposta.ok) throw new Error("Erro ao carregar promoções");
 
-  <script src="script.js"></script>
+        const promocoes = await resposta.json();
+        const container = document.getElementById("promocoes");
+        container.innerHTML = "";
+
+        promocoes.forEach(p => {
+          const card = document.createElement("div");
+          card.className = "card";
+          card.innerHTML = `
+            <h2>${p.nome}</h2>
+            <p>${p.descricao}</p>
+            <p class="preco-antigo">Preço médio: ${p.precoMedio} kz</p>
+            <p class="preco">Promoção: ${p.precoPromocao} kz</p>
+            <p><b>Loja:</b> ${p.loja}</p>
+            <p><a href="${p.link}" target="_blank">Ver no site</a></p>
+            <p><b>Telefone:</b> ${p.telefone}</p>
+          `;
+          container.appendChild(card);
+        });
+
+      } catch (err) {
+        console.error(err);
+        document.getElementById("promocoes").innerHTML = "<p>Erro ao carregar promoções</p>";
+      }
+    }
+
+    carregarPromocoes();
+  </script>
 </body>
 </html>
