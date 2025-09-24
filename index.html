@@ -1,57 +1,102 @@
-<!DOCTYPE html>
-<html lang="pt">
+<!doctype html>
+<html lang="pt-PT">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>EmPromo - Promoções</title>
-  <style>
-    body { font-family: Arial, sans-serif; background: #f9f9f9; margin: 0; padding: 20px; }
-    h1 { text-align: center; }
-    .container { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
-    .card { background: white; padding: 15px; border-radius: 10px; box-shadow: 0 2px 6px rgba(0,0,0,0.2); }
-    .card h2 { margin: 0 0 10px; }
-    .preco { font-size: 18px; font-weight: bold; color: green; }
-    .preco-antigo { text-decoration: line-through; color: red; font-size: 14px; }
-  </style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>EmPromo — Ofertas & Promoções</title>
+  <meta name="description" content="EmPromo — As melhores promoções do dia. Aproveita já!" />
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <h1>🔥 Promoções em Destaque 🔥</h1>
-  <div id="promocoes" class="container"></div>
+  <header class="site-header">
+    <div class="container header-inner">
+      <div class="brand">
+        <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='40' height='40'><rect width='40' height='40' rx='6' fill='%23ff6b35'/><text x='50%' y='57%' font-size='20' text-anchor='middle' fill='white' font-family='Arial' font-weight='700'>EP</text></svg>" alt="EmPromo logo" class="logo" />
+        <h1>EmPromo</h1>
+      </div>
 
-  <script>
-    const API_URL = "https://empromo-api.onrender.com";
+      <nav class="nav">
+        <button id="btn-categories" class="btn ghost">Categorias</button>
+        <input id="search" class="search" type="search" placeholder="Procurar promoções..." aria-label="Pesquisar produtos"/>
+        <button id="btn-cart" class="btn">Carrinho (0)</button>
+      </nav>
+    </div>
 
-    async function carregarPromocoes() {
-      try {
-        const resposta = await fetch(`${API_URL}/promocoes`);
-        if (!resposta.ok) throw new Error("Erro ao carregar promoções");
+    <div class="hero">
+      <div class="container hero-inner">
+        <div class="hero-text">
+          <h2>Ofertas do Dia</h2>
+          <p>Descontos exclusivos — atualizados diariamente. Não percas!</p>
+          <div class="hero-cta">
+            <button id="see-today" class="btn primary">Ver Promoções</button>
+            <a href="#newsletter" class="link">Assinar newsletter</a>
+          </div>
+        </div>
+        <div class="hero-card">
+          <div class="promo-highlight">
+            <img src="" alt="" id="hero-img" />
+            <div class="promo-info">
+              <strong id="hero-title">Promoção em destaque</strong>
+              <div id="hero-countdown" class="countdown" aria-live="polite">—:—:—</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
 
-        const promocoes = await resposta.json();
-        const container = document.getElementById("promocoes");
-        container.innerHTML = "";
+  <main class="container main-content">
+    <section class="filters">
+      <div class="chips" id="category-chips"></div>
+      <div class="sort">
+        <label for="sort-select">Ordenar:</label>
+        <select id="sort-select" aria-label="Ordenar promoções">
+          <option value="featured">Em destaque</option>
+          <option value="price-asc">Preço: menor</option>
+          <option value="price-desc">Preço: maior</option>
+          <option value="ending-soon">A terminar</option>
+        </select>
+      </div>
+    </section>
 
-        promocoes.forEach(p => {
-          const card = document.createElement("div");
-          card.className = "card";
-          card.innerHTML = `
-            <h2>${p.nome}</h2>
-            <p>${p.descricao}</p>
-            <p class="preco-antigo">Preço médio: ${p.precoMedio} kz</p>
-            <p class="preco">Promoção: ${p.precoPromocao} kz</p>
-            <p><b>Loja:</b> ${p.loja}</p>
-            <p><a href="${p.link}" target="_blank">Ver no site</a></p>
-            <p><b>Telefone:</b> ${p.telefone}</p>
-          `;
-          container.appendChild(card);
-        });
+    <section id="promos" class="grid" aria-live="polite">
+      <!-- cards gerados por JS -->
+    </section>
 
-      } catch (err) {
-        console.error(err);
-        document.getElementById("promocoes").innerHTML = "<p>Erro ao carregar promoções</p>";
-      }
-    }
+    <section id="newsletter" class="newsletter">
+      <h3>Recebe promoções no teu email</h3>
+      <form id="newsletter-form" class="newsletter-form" aria-label="Formulário de newsletter">
+        <input type="email" id="email" placeholder="o@exemplo.com" required />
+        <button class="btn primary" type="submit">Assinar</button>
+      </form>
+      <p class="muted">Prometemos não enviar spam — só ofertas boas ✨</p>
+    </section>
+  </main>
 
-    carregarPromocoes();
-  </script>
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div>
+        <h4>EmPromo</h4>
+        <p>Promoções reais, hoje. <br/>Suporte: contacto@empromo.example</p>
+      </div>
+      <div>
+        <h4>Redes</h4>
+        <ul class="social">
+          <li><a href="#" aria-label="Instagram">Instagram</a></li>
+          <li><a href="#" aria-label="Facebook">Facebook</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="copyright">© <span id="year"></span> EmPromo — Todos os direitos reservados</div>
+  </footer>
+
+  <div id="modal" class="modal" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="modal-content">
+      <button id="modal-close" class="modal-close" aria-label="Fechar">×</button>
+      <div id="modal-body"></div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
 </body>
 </html>
