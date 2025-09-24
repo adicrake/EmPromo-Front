@@ -5,74 +5,97 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>EmPromo - As Melhores Promoções</title>
   <style>
+    /* Paleta de cores */
+    :root {
+      --azul: #1b263b;
+      --bege: #f4e1d2;
+      --cinza: #e0e0e0;
+      --branco: #ffffff;
+      --amarelo: #ffcc00;
+    }
+
     body {
       margin: 0;
-      font-family: Arial, sans-serif;
-      background-color: #f9f9f9;
-      color: #333;
+      font-family: 'Comic Sans MS', 'Arial', sans-serif;
+      background-color: var(--bege);
+      color: var(--azul);
     }
+
     header {
-      background: #e63946;
-      color: white;
-      padding: 15px;
+      background: var(--azul);
+      color: var(--branco);
+      padding: 20px;
       text-align: center;
+      border-bottom: 5px solid var(--cinza);
     }
     header h1 {
       margin: 0;
-      font-size: 28px;
+      font-size: 34px;
+      letter-spacing: 2px;
     }
-    nav {
-      background: #ff6b6b;
-      padding: 10px;
-      text-align: center;
+    header p {
+      font-size: 18px;
+      font-style: italic;
+      margin: 5px 0 0;
     }
-    nav a {
-      color: white;
-      margin: 0 15px;
-      text-decoration: none;
-      font-weight: bold;
-    }
+
     .banner {
-      background: url("https://picsum.photos/1200/400?random=1") center/cover;
-      height: 300px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      color: white;
-      font-size: 32px;
+      background: var(--cinza);
+      color: var(--azul);
+      text-align: center;
+      padding: 30px 20px;
+      font-size: 26px;
       font-weight: bold;
-      text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
+      border-bottom: 4px solid var(--azul);
     }
+
+    /* Cronômetro */
+    .cronometro {
+      font-size: 24px;
+      margin-top: 10px;
+      color: var(--azul);
+    }
+
+    /* Grid de promoções estilo BD */
     .promocoes {
       padding: 30px;
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 20px;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 25px;
     }
+
     .card {
-      background: white;
-      border-radius: 8px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-      overflow: hidden;
-      text-align: center;
-      transition: transform 0.2s;
+      background: var(--branco);
+      border: 4px solid var(--azul);
+      border-radius: 10px;
+      padding: 15px;
+      box-shadow: 6px 6px 0 var(--azul);
+      position: relative;
+      transition: transform 0.3s;
     }
     .card:hover {
       transform: scale(1.05);
     }
     .card img {
       width: 100%;
-      height: 180px;
-      object-fit: cover;
+      height: auto;
+      border: 3px solid var(--azul);
+      border-radius: 5px;
     }
     .card h3 {
-      margin: 10px 0;
-      font-size: 18px;
+      margin: 15px 0 10px;
+      font-size: 20px;
+      text-transform: uppercase;
+    }
+    .descricao {
+      font-size: 14px;
+      color: #444;
+      margin-bottom: 10px;
     }
     .preco {
-      color: #e63946;
-      font-weight: bold;
       font-size: 20px;
+      font-weight: bold;
+      color: var(--azul);
     }
     .antigo {
       text-decoration: line-through;
@@ -81,21 +104,48 @@
     }
     .btn {
       display: inline-block;
-      margin: 10px 0 20px;
+      margin-top: 10px;
       padding: 10px 20px;
-      background: #e63946;
-      color: white;
+      background: var(--azul);
+      color: var(--branco);
       border-radius: 5px;
       text-decoration: none;
       font-weight: bold;
       transition: background 0.3s;
     }
     .btn:hover {
-      background: #b71c1c;
+      background: #0d1b2a;
     }
+
+    /* Roda dentada amarela */
+    .desconto {
+      position: absolute;
+      top: -15px;
+      right: -15px;
+      width: 70px;
+      height: 70px;
+      background: var(--amarelo);
+      border-radius: 50%;
+      border: 3px solid var(--azul);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      color: var(--azul);
+      font-size: 16px;
+      clip-path: polygon(
+        50% 0%, 60% 10%, 70% 0%, 80% 10%, 90% 0%, 
+        100% 20%, 90% 30%, 100% 40%, 90% 50%, 100% 60%, 
+        90% 70%, 100% 80%, 90% 90%, 80% 100%, 70% 90%, 
+        60% 100%, 50% 90%, 40% 100%, 30% 90%, 20% 100%, 
+        10% 90%, 0% 80%, 10% 70%, 0% 60%, 10% 50%, 
+        0% 40%, 10% 30%, 0% 20%, 10% 10%, 20% 0%, 30% 10%, 40% 0%
+      );
+    }
+
     footer {
-      background: #333;
-      color: white;
+      background: var(--azul);
+      color: var(--branco);
       text-align: center;
       padding: 15px;
       margin-top: 20px;
@@ -106,42 +156,42 @@
 
   <header>
     <h1>EmPromo</h1>
-    <p>As melhores promoções num só lugar 🚀</p>
+    <p>“Poupar nunca foi tão divertido!” 🎉</p>
   </header>
 
-  <nav>
-    <a href="#">Início</a>
-    <a href="#">Categorias</a>
-    <a href="#">Ofertas do Dia</a>
-    <a href="#">Contacto</a>
-  </nav>
-
   <div class="banner">
-    🔥 Promoções Imperdíveis Hoje!
+    🔥 Super Ofertas do Dia
+    <div class="cronometro" id="cronometro">Carregando...</div>
   </div>
 
   <section class="promocoes">
     <div class="card">
-      <img src="https://picsum.photos/400/200?random=2" alt="Produto 1">
+      <div class="desconto">-40%</div>
+      <img src="https://picsum.photos/400/250?random=10" alt="Produto 1">
       <h3>Smartphone X</h3>
-      <p class="antigo">$499</p>
-      <p class="preco">$299</p>
+      <p class="descricao">Ecrã gigante, bateria de longa duração e câmara incrível.</p>
+      <p class="antigo">€499</p>
+      <p class="preco">€299</p>
       <a href="#" class="btn">Aproveitar</a>
     </div>
 
     <div class="card">
-      <img src="https://picsum.photos/400/200?random=3" alt="Produto 2">
+      <div class="desconto">-30%</div>
+      <img src="https://picsum.photos/400/260?random=20" alt="Produto 2">
       <h3>Ténis Nike</h3>
-      <p class="antigo">$120</p>
-      <p class="preco">$79</p>
+      <p class="descricao">Conforto e estilo para o teu dia a dia.</p>
+      <p class="antigo">€120</p>
+      <p class="preco">€79</p>
       <a href="#" class="btn">Aproveitar</a>
     </div>
 
     <div class="card">
-      <img src="https://picsum.photos/400/200?random=4" alt="Produto 3">
+      <div class="desconto">-50%</div>
+      <img src="https://picsum.photos/400/270?random=30" alt="Produto 3">
       <h3>Relógio Clássico</h3>
-      <p class="antigo">$200</p>
-      <p class="preco">$99</p>
+      <p class="descricao">Design elegante e resistente à água.</p>
+      <p class="antigo">€200</p>
+      <p class="preco">€99</p>
       <a href="#" class="btn">Aproveitar</a>
     </div>
   </section>
@@ -149,6 +199,30 @@
   <footer>
     <p>© 2025 EmPromo - Todos os direitos reservados</p>
   </footer>
+
+  <script>
+    // Cronômetro regressivo (24h)
+    function startCountdown() {
+      let countDownDate = new Date().getTime() + 24*60*60*1000;
+      let cronometro = document.getElementById("cronometro");
+
+      setInterval(function() {
+        let now = new Date().getTime();
+        let distance = countDownDate - now;
+
+        let hours = Math.floor((distance % (1000*60*60*24)) / (1000*60*60));
+        let minutes = Math.floor((distance % (1000*60*60)) / (1000*60));
+        let seconds = Math.floor((distance % (1000*60)) / 1000);
+
+        cronometro.innerHTML = hours + "h " + minutes + "m " + seconds + "s ";
+
+        if (distance < 0) {
+          cronometro.innerHTML = "Promoção Encerrada!";
+        }
+      }, 1000);
+    }
+    startCountdown();
+  </script>
 
 </body>
 </html>
