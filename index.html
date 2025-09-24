@@ -6,7 +6,7 @@
   <title>EmPromo - As Melhores Promoções</title>
   <style>
     body {
-      font-family: 'Comic Sans MS', sans-serif;
+      font-family: 'Comic Sans MS', cursive, sans-serif;
       margin: 0;
       background: #fdfdfd;
       color: #001f3f; /* Azul marinho */
@@ -19,8 +19,8 @@
       text-align: center;
       font-size: 2rem;
       font-weight: bold;
-      letter-spacing: 2px;
       border-bottom: 8px solid #f0e5d8; /* Bege */
+      box-shadow: 0px 5px 0px #999;
     }
 
     .impacto {
@@ -33,9 +33,14 @@
     .timer {
       text-align: center;
       margin: 20px 0;
-      font-size: 1.5rem;
+      font-size: 1.6rem;
       font-weight: bold;
-      color: #ff4136; /* vermelho chamativo */
+      color: #ff4136;
+      background: #f0e5d8;
+      display: inline-block;
+      padding: 10px 20px;
+      border: 4px solid #001f3f;
+      border-radius: 8px;
     }
 
     /* Grade estilo BD */
@@ -43,19 +48,24 @@
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
       grid-auto-rows: 220px;
-      gap: 15px;
+      gap: 20px;
       padding: 20px;
     }
 
     .card {
       background: white;
-      border: 5px solid black; /* bordas grossas tipo BD */
+      border: 5px solid black;
       box-shadow: 6px 6px 0px #999;
       padding: 15px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
       position: relative;
+      transition: transform 0.2s;
+    }
+
+    .card:hover {
+      transform: scale(1.05);
     }
 
     /* Diferentes tamanhos como tirinhas */
@@ -65,12 +75,42 @@
     .card h3 {
       margin: 0;
       font-size: 1.2rem;
+      font-weight: bold;
     }
 
     .preco {
-      font-weight: bold;
+      background: #fff;
       color: #001f3f;
+      font-weight: bold;
       font-size: 1.3rem;
+      padding: 8px 12px;
+      border: 3px solid black;
+      border-radius: 50%;
+      position: absolute;
+      bottom: -15px;
+      right: -15px;
+      box-shadow: 4px 4px 0px #ccc;
+    }
+
+    /* Balões estilo BD para descrição */
+    .card p {
+      background: #f0e5d8;
+      padding: 6px 10px;
+      border: 3px solid black;
+      display: inline-block;
+      border-radius: 10px;
+      font-size: 0.9rem;
+      position: relative;
+    }
+
+    .card p::after {
+      content: "";
+      position: absolute;
+      bottom: -10px;
+      left: 20px;
+      border-width: 10px;
+      border-style: solid;
+      border-color: #f0e5d8 transparent transparent transparent;
     }
 
     /* Roda dentada de desconto */
@@ -78,16 +118,16 @@
       position: absolute;
       top: 10px;
       right: 10px;
-      width: 60px;
-      height: 60px;
+      width: 70px;
+      height: 70px;
       background: yellow;
       border-radius: 50%;
-      border: 3px solid black;
+      border: 4px solid black;
       display: flex;
       align-items: center;
       justify-content: center;
       font-weight: bold;
-      animation: girar 4s linear infinite;
+      animation: girar 5s linear infinite;
     }
 
     @keyframes girar {
@@ -99,16 +139,18 @@
 <body>
   <header>
     EmPromo 🚀  
-    <div class="impacto">As promoções que parecem saídas de uma BD!</div>
+    <div class="impacto">As promoções mais explosivas, direto dos quadrinhos!</div>
   </header>
 
-  <div class="timer" id="cronometro">Promoção acaba em: 00:00:00</div>
+  <div style="text-align:center;">
+    <div class="timer" id="cronometro">Promoção acaba em: 00:00:00</div>
+  </div>
 
   <section class="grid">
     <div class="card tall">
       <div class="desconto">-50%</div>
       <h3>Smartphone X</h3>
-      <p>Rápido, moderno e barato.</p>
+      <p>Rápido, moderno e barato!</p>
       <div class="preco">120.000 Kz</div>
     </div>
 
@@ -142,7 +184,7 @@
   </section>
 
   <script>
-    // Cronômetro regressivo (exemplo: 2 horas)
+    // Cronômetro regressivo (2 horas = 7200 segundos)
     function iniciarCronometro(duracao) {
       let tempo = duracao;
       const cronometro = document.getElementById("cronometro");
@@ -162,8 +204,7 @@
       }, 1000);
     }
 
-    // Iniciar com 2 horas (7200 segundos)
-    iniciarCronometro(7200);
+    iniciarCronometro(7200); // 2 horas
   </script>
 </body>
 </html>
