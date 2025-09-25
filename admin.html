@@ -4,62 +4,32 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Admin - EmPromo</title>
-  <style>
-    body { font-family: Arial, sans-serif; background: #f4f4f4; padding: 20px; }
-    h1 { text-align: center; }
-    form { max-width: 500px; margin: auto; background: white; padding: 20px; border-radius: 10px; }
-    input, textarea, button { width: 100%; margin: 10px 0; padding: 10px; }
-    button { background: green; color: white; border: none; border-radius: 5px; cursor: pointer; }
-  </style>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <h1>Painel Administrativo</h1>
-  <form id="form-promocao">
-    <input type="text" id="nome" placeholder="Nome do produto" required>
-    <textarea id="descricao" placeholder="Descrição" required></textarea>
-    <input type="number" id="precoMedio" placeholder="Preço médio" required>
-    <input type="number" id="precoPromocao" placeholder="Preço promocional" required>
-    <input type="text" id="loja" placeholder="Loja" required>
-    <input type="url" id="link" placeholder="Link do produto" required>
-    <input type="text" id="telefone" placeholder="Telefone da loja" required>
-    <input type="date" id="tempoRestante" required>
-    <button type="submit">Salvar Promoção</button>
-  </form>
+  <header>
+    <h1>🛠 Painel de Administração</h1>
+  </header>
 
-  <script>
-    const API_URL = "https://empromo-api.onrender.com";
+  <section class="form-section">
+    <h2>Adicionar Produto</h2>
+    <form id="product-form">
+      <input type="text" id="name" placeholder="Nome do produto" required>
+      <input type="text" id="description" placeholder="Descrição" required>
+      <input type="text" id="image" placeholder="URL da imagem" required>
+      <input type="number" id="oldPrice" placeholder="Preço antigo (Kz)" required>
+      <input type="number" id="newPrice" placeholder="Preço novo (Kz)" required>
+      <input type="number" id="discount" placeholder="Desconto (%)" required>
+      <input type="datetime-local" id="endTime" required>
+      <button type="submit">Salvar Produto</button>
+    </form>
+  </section>
 
-    document.getElementById("form-promocao").addEventListener("submit", async (e) => {
-      e.preventDefault();
+  <section class="list-section">
+    <h2>Lista de Produtos</h2>
+    <div id="product-list"></div>
+  </section>
 
-      const novaPromocao = {
-        nome: document.getElementById("nome").value,
-        descricao: document.getElementById("descricao").value,
-        precoMedio: parseFloat(document.getElementById("precoMedio").value),
-        precoPromocao: parseFloat(document.getElementById("precoPromocao").value),
-        loja: document.getElementById("loja").value,
-        link: document.getElementById("link").value,
-        telefone: document.getElementById("telefone").value,
-        tempoRestante: document.getElementById("tempoRestante").value
-      };
-
-      try {
-        const resposta = await fetch(`${API_URL}/promocoes`, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(novaPromocao)
-        });
-
-        if (!resposta.ok) throw new Error("Erro ao salvar promoção");
-
-        alert("Promoção salva com sucesso!");
-        document.getElementById("form-promocao").reset();
-
-      } catch (err) {
-        console.error(err);
-        alert("Erro ao conectar com a API");
-      }
-    });
-  </script>
+  <script src="script.js"></script>
 </body>
 </html>
