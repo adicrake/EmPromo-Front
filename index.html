@@ -3,136 +3,111 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LevaAqui | Marketplace IMETRO</title>
+<title>LevaAqui — Mercado Digital da IMETRO</title>
 <link rel="stylesheet" href="style.css">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
 
 <body>
 
-<header class="header">
-  <div class="logo">LevaAqui</div>
+<header class="topbar">
+  <div class="brand">LevaAqui</div>
   <nav>
-    <a href="#produtos">Produtos</a>
-    <a href="#sobre">Sobre</a>
-    <a href="#local">Localização</a>
+    <a href="#market">Mercado</a>
+    <a href="#vendors">Vendedores</a>
+    <a href="#space">Nosso Espaço</a>
   </nav>
 </header>
 
-<!-- HERO -->
-<section class="hero" id="sobre">
-  <div class="hero-text">
-    <h1>Compra e vende dentro da IMETRO</h1>
-    <p>Plataforma criada por estudantes para facilitar a venda de produtos entre alunos e comunidade escolar.</p>
+<section class="hero">
+  <div class="hero-content">
+    <h1>O comércio estudantil ganhou um novo lar</h1>
+    <p>Um marketplace criado por estudantes da IMETRO para transformar talento em oportunidade.</p>
+    <button>Explorar produtos</button>
   </div>
+</section>
+
+<section class="categories">
+  <button class="cat active" data-cat="all">Todos</button>
+  <button class="cat" data-cat="gelados">Gelados</button>
+  <button class="cat" data-cat="bebidas">Bebidas</button>
+  <button class="cat" data-cat="salgados">Salgados</button>
+  <button class="cat" data-cat="cheap">Abaixo 200 Kz</button>
+</section>
+
+<section id="market" class="grid"></section>
+
+<h2 class="section-title">Vendedores em Destaque</h2>
+<section id="vendors" class="vendors"></section>
+
+<section id="space" class="space">
   <img src="https://images.unsplash.com/photo-1523580846011-d3a5bc25702b?w=900">
-</section>
-
-<!-- SEARCH -->
-<section class="search-section">
-  <input type="text" id="searchInput" placeholder="Pesquisar produto...">
-</section>
-
-<!-- PRODUCTS -->
-<section class="products" id="produtos"></section>
-
-<!-- LOCATION -->
-<section class="location" id="local">
   <div>
-    <h2>Visite o nosso espaço físico</h2>
-    <p>Campus da IMETRO, atrás do campo desportivo.</p>
+    <h2>Onde tudo acontece</h2>
+    <p>Mais do que um espaço físico.</p>
+    <p>É onde ideias nascem, negócios crescem e sonhos ganham direção.</p>
+    <p>Campus da IMETRO, atrás do campo.</p>
   </div>
-  <img src="https://images.unsplash.com/photo-1607237138185-eedd9c632b0b?w=900">
 </section>
 
 <footer>
-  <p>© 2026 LevaAqui - Projecto Estudantil IMETRO</p>
+  <p>LevaAqui © 2026 • Feito com visão por estudantes IMETRO</p>
 </footer>
 
 <script>
 
-const products = [
- {
-  name:"Brownie de Chocolate",
-  price:800,
-  image:"https://images.unsplash.com/photo-1607920591413-4ec007e70023?w=500",
-  seller:"Ana Maria",
-  sellerImg:"https://randomuser.me/api/portraits/women/44.jpg"
- },
- {
-  name:"Sanduíche Natural",
-  price:1200,
-  image:"https://images.unsplash.com/photo-1509722747041-616f39b57569?w=500",
-  seller:"Carlos Pedro",
-  sellerImg:"https://randomuser.me/api/portraits/men/32.jpg"
- },
- {
-  name:"Empada de Frango",
-  price:700,
-  image:"https://images.unsplash.com/photo-1601050690597-df0568f70950?w=500",
-  seller:"Helena Costa",
-  sellerImg:"https://randomuser.me/api/portraits/women/65.jpg"
- },
- {
-  name:"Cookies",
-  price:600,
-  image:"https://images.unsplash.com/photo-1499636136210-6f4ee915583e?w=500",
-  seller:"João Miguel",
-  sellerImg:"https://randomuser.me/api/portraits/men/54.jpg"
- },
- {
-  name:"Sumo Natural",
-  price:500,
-  image:"https://images.unsplash.com/photo-1551024709-8f23befc6f87?w=500",
-  seller:"Paula Santos",
-  sellerImg:"https://randomuser.me/api/portraits/women/22.jpg"
- },
- {
-  name:"Hambúrguer",
-  price:1500,
-  image:"https://images.unsplash.com/photo-1550547660-d9450f859349?w=500",
-  seller:"Rui Almeida",
-  sellerImg:"https://randomuser.me/api/portraits/men/67.jpg"
- },
- {
-  name:"Bolo Caseiro",
-  price:900,
-  image:"https://images.unsplash.com/photo-1542826438-7a60c6eaa2e9?w=500",
-  seller:"Marta Silva",
-  sellerImg:"https://randomuser.me/api/portraits/women/12.jpg"
- },
- {
-  name:"Batata Frita",
-  price:700,
-  image:"https://images.unsplash.com/photo-1571091718767-18b5b1457add?w=500",
-  seller:"André Paulo",
-  sellerImg:"https://randomuser.me/api/portraits/men/90.jpg"
- }
+const products=[
+ {name:"Gelado Chocolate",price:150,cat:"gelados",stars:5},
+ {name:"Sumo Natural",price:300,cat:"bebidas",stars:4},
+ {name:"Hambúrguer",price:800,cat:"salgados",stars:5},
+ {name:"Empada",price:400,cat:"salgados",stars:4},
+ {name:"Água",price:100,cat:"bebidas",stars:5},
+ {name:"Gelado Baunilha",price:150,cat:"gelados",stars:4},
+ {name:"Bolo Caseiro",price:600,cat:"salgados",stars:5},
+ {name:"Batata Frita",price:350,cat:"salgados",stars:4}
 ];
 
-const productsDiv = document.querySelector(".products");
+const sellers=[
+ {name:"Ana Maria",class:"10ªA",time:"2 anos",rate:5},
+ {name:"João Miguel",class:"11ªB",time:"1 ano",rate:4},
+ {name:"Paula Santos",class:"12ªC",time:"3 anos",rate:5},
+];
 
-function renderProducts(list){
- productsDiv.innerHTML = list.map(p=>`
-  <div class="card">
-   <img class="product-img" src="${p.image}">
-   <h3>${p.name}</h3>
-   <p class="price">${p.price} Kz</p>
+const grid=document.querySelector(".grid");
+const vendorBox=document.querySelector(".vendors");
 
-   <div class="seller">
-    <img src="${p.sellerImg}">
-    <span>${p.seller}</span>
-   </div>
-  </div>
- `).join("");
+function stars(n){return "★".repeat(n)+"☆".repeat(5-n);}
+
+function render(cat="all"){
+ let list=products;
+ if(cat==="cheap") list=products.filter(p=>p.price<200);
+ else if(cat!=="all") list=products.filter(p=>p.cat===cat);
+
+ grid.innerHTML=list.map(p=>`
+ <div class="card">
+  <h3>${p.name}</h3>
+  <span>${p.price} Kz</span>
+  <div class="stars">${stars(p.stars)}</div>
+ </div>`).join("");
 }
 
-document.getElementById("searchInput").addEventListener("input", e=>{
- const value = e.target.value.toLowerCase();
- const filtered = products.filter(p => p.name.toLowerCase().includes(value));
- renderProducts(filtered);
+vendorBox.innerHTML=sellers.map(v=>`
+ <div class="vendor">
+  <h3>${v.name}</h3>
+  <p>Sala ${v.class}</p>
+  <p>${v.time}</p>
+  <div class="stars">${stars(v.rate)}</div>
+ </div>`).join("");
+
+document.querySelectorAll(".cat").forEach(b=>{
+ b.onclick=()=>{
+  document.querySelectorAll(".cat").forEach(x=>x.classList.remove("active"));
+  b.classList.add("active");
+  render(b.dataset.cat);
+ }
 });
 
-renderProducts(products);
+render();
 
 </script>
 
