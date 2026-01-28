@@ -1,107 +1,86 @@
-@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap');
-
-:root {
-    --primary: #00ff88; /* Verde Neon Moderno */
-    --dark: #0f172a;    /* Azul quase preto para o fundo */
-    --card: #1e293b;    /* Cinza azulado para os cards */
-    --text: #f8fafc;
-}
-
 body {
-    background-color: var(--dark);
-    color: var(--text);
-    font-family: 'Plus Jakarta Sans', sans-serif;
     margin: 0;
-    padding: 20px;
+    font-family: 'Segoe UI', sans-serif;
+    background: #f4f6f8;
+    color: #333;
 }
 
-/* Header Estiloso */
 header {
+    background: linear-gradient(135deg, #ff9800, #ff5722);
+    color: white;
+    padding: 30px;
     text-align: center;
-    padding: 50px 0;
 }
 
-header h1 {
-    font-size: 3rem;
-    background: linear-gradient(to right, #00ff88, #60efff);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    font-weight: 800;
+footer {
+    text-align: center;
+    padding: 15px;
+    background: #222;
+    color: white;
 }
 
-/* Grid de Produtos */
-.grid-produtos {
+/* Produtos */
+.produtos {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 30px;
-    max-width: 1200px;
-    margin: 0 auto;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 25px;
+    padding: 40px;
 }
 
-/* Card Moderno com Efeito de Vidro */
 .card {
-    background: var(--card);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 24px;
-    overflow: hidden;
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    padding: 20px;
+    text-align: center;
+    transition: transform 0.3s;
 }
 
 .card:hover {
-    transform: translateY(-10px) scale(1.02);
-    border-color: var(--primary);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+    transform: translateY(-8px);
 }
 
 .card img {
     width: 100%;
-    height: 220px;
+    border-radius: 12px;
+    height: 180px;
     object-fit: cover;
 }
 
-.card-content {
-    padding: 24px;
+.preco {
+    font-size: 20px;
+    color: #ff5722;
+    font-weight: bold;
 }
 
-.price-tag {
-    background: var(--primary);
-    color: #000;
-    padding: 6px 16px;
-    border-radius: 12px;
-    font-weight: 800;
+.rating {
+    color: #ff9800;
+}
+
+.btn {
     display: inline-block;
-    margin-bottom: 12px;
+    margin-top: 10px;
+    padding: 10px 18px;
+    background: #ff5722;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
 }
 
-.card h3 {
-    font-size: 1.4rem;
-    margin-bottom: 8px;
-}
-
-.vendedor-info {
+/* Detalhes */
+.detalhes {
     display: flex;
-    align-items: center;
-    gap: 10px;
-    font-size: 0.9rem;
-    color: #94a3b8;
-    margin-bottom: 20px;
+    flex-wrap: wrap;
+    gap: 30px;
+    padding: 40px;
+    justify-content: center;
 }
 
-/* Botão com Brilho */
-.btn-ver {
-    width: 100%;
-    padding: 14px;
-    border: none;
-    border-radius: 14px;
-    background: var(--primary);
-    color: #000;
-    font-weight: 700;
-    cursor: pointer;
-    box-shadow: 0 4px 15px rgba(0, 255, 136, 0.3);
-    transition: 0.3s;
+.detalhes img {
+    width: 350px;
+    border-radius: 15px;
 }
 
-.btn-ver:hover {
-    filter: brightness(1.1);
-    box-shadow: 0 4px 25px rgba(0, 255, 136, 0.5);
+.info {
+    max-width: 400px;
 }
