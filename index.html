@@ -2,49 +2,47 @@
 <html lang="pt">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EmPromo - Comida Acadêmica</title>
-    <link rel="stylesheet" href="estilo.css">
+    <title>Mercado dos Estudantes</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <header class="navbar">
-        <div class="logo">EmPromo 🎓</div>
-        <p>O sabor que o estudante precisa</p>
-    </header>
+<header>
+    <h1>🍔 Mercado dos Estudantes</h1>
+    <p>Produtos feitos por estudantes, para estudantes</p>
+</header>
 
-    <main class="container">
-        <h2 class="titulo-secao">Produtos em Destaque</h2>
-        
-        <div class="grid-produtos">
-            <div class="card">
-                <div class="badge-preco">500 Kz</div>
-                <img src="https://images.unsplash.com/photo-1535141192574-5d4897c12636?w=400" alt="Bolo de Pote">
-                <div class="card-corpo">
-                    <h3>Bolo de Pote - Chocolate</h3>
-                    <div class="meta">
-                        <span class="rating">⭐ 4.8</span>
-                        <span class="vendedor">Por: João Silva</span>
-                    </div>
-                    <button class="btn-detalhes" onclick="alert('Vendedor: João\nSala: 12\nDisponível: 10h às 14h')">Ver Vendedor</button>
-                </div>
-            </div>
+<main class="produtos">
 
-            <div class="card">
-                <div class="badge-preco">300 Kz</div>
-                <img src="https://images.unsplash.com/photo-1514849302-984523450cf4?w=400" alt="Suco">
-                <div class="card-corpo">
-                    <h3>Suco de Maracujá 500ml</h3>
-                    <div class="meta">
-                        <span class="rating">⭐ 4.5</span>
-                        <span class="vendedor">Por: Maria D.</span>
-                    </div>
-                    <button class="btn-detalhes">Ver Vendedor</button>
-                </div>
-            </div>
-        </div>
-    </main>
+    <div class="card">
+        <img src="https://images.unsplash.com/photo-1604908177522-4326ef9c2b38" alt="Bolo caseiro">
+        <h2>Bolo de Chocolate</h2>
+        <p class="preco">2,50 €</p>
+        <p class="rating">⭐ 4.8</p>
+        <a href="produto.html" class="btn">Ver detalhes</a>
+    </div>
 
-    <script src="script.js"></script>
+    <div class="card">
+        <img src="https://images.unsplash.com/photo-1589302168068-964664d93dc0" alt="Sandes">
+        <h2>Sandes Natural</h2>
+        <p class="preco">1,80 €</p>
+        <p class="rating">⭐ 4.5</p>
+        <a href="produto.html" class="btn">Ver detalhes</a>
+    </div>
+
+    <div class="card">
+        <img src="https://images.unsplash.com/photo-1605475128023-3f7e6f2b8d60" alt="Brigadeiro">
+        <h2>Brigadeiros</h2>
+        <p class="preco">0,50 €</p>
+        <p class="rating">⭐ 5.0</p>
+        <a href="produto.html" class="btn">Ver detalhes</a>
+    </div>
+
+</main>
+
+<footer>
+    <p>© 2026 - Projeto Escolar</p>
+</footer>
+
 </body>
 </html>
