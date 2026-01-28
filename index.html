@@ -1,26 +1,46 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EmPromo - Comida de Estudante</title>
+    <title>EmPromo - Comida Acadêmica</title>
     <link rel="stylesheet" href="estilo.css">
 </head>
 <body>
-    <header>
-        <h1>EmPromo 🎓</h1>
-        <p>O melhor da culinária acadêmica</p>
+
+    <header class="navbar">
+        <div class="logo">EmPromo 🎓</div>
+        <p>O sabor que o estudante precisa</p>
     </header>
 
-    <main class="vitrine">
-        <div class="card" onclick="abrirDetalhes()">
-            <div class="preco">500 Kz</div>
-            <img src="https://via.placeholder.com/150" alt="Produto">
-            <div class="info">
-                <h3>Bolo de Pote - Chocolate</h3>
-                <span class="nota">⭐ 4.8</span>
-                <p>Vendedor: <strong>João Silva</strong></p>
-                <button>Ver Detalhes</button>
+    <main class="container">
+        <h2 class="titulo-secao">Produtos em Destaque</h2>
+        
+        <div class="grid-produtos">
+            <div class="card">
+                <div class="badge-preco">500 Kz</div>
+                <img src="https://images.unsplash.com/photo-1535141192574-5d4897c12636?w=400" alt="Bolo de Pote">
+                <div class="card-corpo">
+                    <h3>Bolo de Pote - Chocolate</h3>
+                    <div class="meta">
+                        <span class="rating">⭐ 4.8</span>
+                        <span class="vendedor">Por: João Silva</span>
+                    </div>
+                    <button class="btn-detalhes" onclick="alert('Vendedor: João\nSala: 12\nDisponível: 10h às 14h')">Ver Vendedor</button>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="badge-preco">300 Kz</div>
+                <img src="https://images.unsplash.com/photo-1514849302-984523450cf4?w=400" alt="Suco">
+                <div class="card-corpo">
+                    <h3>Suco de Maracujá 500ml</h3>
+                    <div class="meta">
+                        <span class="rating">⭐ 4.5</span>
+                        <span class="vendedor">Por: Maria D.</span>
+                    </div>
+                    <button class="btn-detalhes">Ver Vendedor</button>
+                </div>
             </div>
         </div>
     </main>
