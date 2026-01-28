@@ -1,808 +1,125 @@
 <!DOCTYPE html>
 <html lang="pt">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EscolaMarket - Produtos dos Estudantes</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            background: linear-gradient(135deg, #fff5eb 0%, #ffffff 50%, #fffbf0 100%);
-            min-height: 100vh;
-        }
-
-        .header {
-            background: white;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-
-        .header-content {
-            max-width: 1280px;
-            margin: 0 auto;
-            padding: 1rem 2rem;
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .logo {
-            background: linear-gradient(135deg, #f97316 0%, #f59e0b 100%);
-            padding: 0.5rem;
-            border-radius: 0.75rem;
-            width: 40px;
-            height: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .logo svg {
-            width: 24px;
-            height: 24px;
-            color: white;
-        }
-
-        .header-text h1 {
-            font-size: 1.5rem;
-            font-weight: 700;
-            background: linear-gradient(135deg, #ea580c 0%, #d97706 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .header-text p {
-            font-size: 0.875rem;
-            color: #6b7280;
-        }
-
-        .container {
-            max-width: 1280px;
-            margin: 0 auto;
-            padding: 2rem;
-        }
-
-        .search-section {
-            margin-bottom: 2rem;
-        }
-
-        .search-box {
-            position: relative;
-            margin-bottom: 1rem;
-        }
-
-        .search-box input {
-            width: 100%;
-            padding: 0.75rem 1rem 0.75rem 3rem;
-            border: 1px solid #e5e7eb;
-            border-radius: 0.75rem;
-            font-size: 1rem;
-            outline: none;
-            transition: all 0.2s;
-        }
-
-        .search-box input:focus {
-            border-color: #f97316;
-            box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.1);
-        }
-
-        .search-icon {
-            position: absolute;
-            left: 1rem;
-            top: 50%;
-            transform: translateY(-50%);
-            color: #9ca3af;
-        }
-
-        .filters {
-            display: flex;
-            gap: 0.5rem;
-            flex-wrap: wrap;
-        }
-
-        .filter-btn {
-            padding: 0.5rem 1rem;
-            border-radius: 9999px;
-            border: 1px solid #e5e7eb;
-            background: white;
-            cursor: pointer;
-            transition: all 0.2s;
-            font-size: 0.875rem;
-        }
-
-        .filter-btn:hover {
-            background: #f9fafb;
-        }
-
-        .filter-btn.active {
-            background: linear-gradient(135deg, #f97316 0%, #f59e0b 100%);
-            color: white;
-            border-color: transparent;
-            box-shadow: 0 4px 6px rgba(249, 115, 22, 0.2);
-        }
-
-        .products-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 1.5rem;
-        }
-
-        .product-card {
-            background: white;
-            border-radius: 1rem;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            overflow: hidden;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-
-        .product-card:hover {
-            box-shadow: 0 10px 15px rgba(0,0,0,0.15);
-            transform: translateY(-2px);
-        }
-
-        .product-image {
-            position: relative;
-            height: 200px;
-            overflow: hidden;
-        }
-
-        .product-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.3s;
-        }
-
-        .product-card:hover .product-image img {
-            transform: scale(1.1);
-        }
-
-        .product-price {
-            position: absolute;
-            top: 1rem;
-            right: 1rem;
-            background: rgba(255,255,255,0.95);
-            backdrop-filter: blur(10px);
-            padding: 0.5rem 1rem;
-            border-radius: 9999px;
-            font-weight: 700;
-            color: #ea580c;
-        }
-
-        .product-category {
-            position: absolute;
-            top: 1rem;
-            left: 1rem;
-            background: linear-gradient(135deg, #f97316 0%, #f59e0b 100%);
-            color: white;
-            padding: 0.25rem 0.75rem;
-            border-radius: 9999px;
-            font-size: 0.75rem;
-        }
-
-        .product-info {
-            padding: 1rem;
-        }
-
-        .product-name {
-            font-size: 1.125rem;
-            font-weight: 700;
-            color: #1f2937;
-            margin-bottom: 0.5rem;
-        }
-
-        .product-rating {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            margin-bottom: 1rem;
-        }
-
-        .stars {
-            display: flex;
-            gap: 0.125rem;
-        }
-
-        .star {
-            color: #fbbf24;
-        }
-
-        .rating-number {
-            font-weight: 600;
-            color: #374151;
-        }
-
-        .reviews-count {
-            font-size: 0.875rem;
-            color: #6b7280;
-        }
-
-        .seller-info {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding-top: 0.75rem;
-            border-top: 1px solid #f3f4f6;
-        }
-
-        .seller-photo {
-            width: 32px;
-            height: 32px;
-            border-radius: 50%;
-            object-fit: cover;
-        }
-
-        .seller-details {
-            flex: 1;
-        }
-
-        .seller-name {
-            font-size: 0.875rem;
-            color: #6b7280;
-        }
-
-        .seller-room {
-            font-size: 0.75rem;
-            color: #9ca3af;
-        }
-
-        /* Modal */
-        .modal {
-            display: none;
-            position: fixed;
-            inset: 0;
-            background: rgba(0,0,0,0.5);
-            backdrop-filter: blur(4px);
-            z-index: 1000;
-            padding: 1rem;
-            overflow-y: auto;
-        }
-
-        .modal.active {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .modal-content {
-            background: white;
-            border-radius: 1rem;
-            max-width: 800px;
-            width: 100%;
-            max-height: 90vh;
-            overflow-y: auto;
-        }
-
-        .modal-header {
-            position: relative;
-            height: 300px;
-        }
-
-        .modal-header img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .close-btn {
-            position: absolute;
-            top: 1rem;
-            right: 1rem;
-            background: rgba(255,255,255,0.95);
-            backdrop-filter: blur(10px);
-            border: none;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: background 0.2s;
-        }
-
-        .close-btn:hover {
-            background: white;
-        }
-
-        .modal-price {
-            position: absolute;
-            bottom: 1rem;
-            left: 1rem;
-            background: rgba(255,255,255,0.95);
-            backdrop-filter: blur(10px);
-            padding: 0.5rem 1rem;
-            border-radius: 9999px;
-            font-weight: 700;
-            font-size: 1.5rem;
-            color: #ea580c;
-        }
-
-        .modal-body {
-            padding: 1.5rem;
-        }
-
-        .modal-title {
-            font-size: 2rem;
-            font-weight: 700;
-            color: #1f2937;
-            margin-bottom: 1rem;
-        }
-
-        .seller-section {
-            background: linear-gradient(135deg, #fff7ed 0%, #fffbeb 100%);
-            border-radius: 1rem;
-            padding: 1.5rem;
-            margin: 1.5rem 0;
-        }
-
-        .seller-section h3 {
-            font-size: 1.125rem;
-            font-weight: 700;
-            color: #1f2937;
-            margin-bottom: 1rem;
-        }
-
-        .seller-header {
-            display: flex;
-            gap: 1rem;
-            margin-bottom: 1rem;
-        }
-
-        .seller-avatar {
-            width: 64px;
-            height: 64px;
-            border-radius: 50%;
-            object-fit: cover;
-            box-shadow: 0 0 0 4px white;
-        }
-
-        .seller-main-info h4 {
-            font-size: 1.25rem;
-            font-weight: 700;
-            color: #1f2937;
-        }
-
-        .seller-stats {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            margin-top: 0.25rem;
-        }
-
-        .seller-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 0.75rem;
-        }
-
-        .info-box {
-            background: white;
-            border-radius: 0.5rem;
-            padding: 0.75rem;
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-        }
-
-        .info-icon {
-            background: #fed7aa;
-            padding: 0.5rem;
-            border-radius: 0.5rem;
-            color: #ea580c;
-        }
-
-        .info-label {
-            font-size: 0.75rem;
-            color: #6b7280;
-        }
-
-        .info-value {
-            font-weight: 600;
-            color: #1f2937;
-        }
-
-        .reviews-section h3 {
-            font-size: 1.125rem;
-            font-weight: 700;
-            color: #1f2937;
-            margin-bottom: 1rem;
-        }
-
-        .review-card {
-            background: #f9fafb;
-            border-radius: 0.75rem;
-            padding: 1rem;
-            margin-bottom: 1rem;
-        }
-
-        .review-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 0.5rem;
-        }
-
-        .review-author {
-            font-weight: 600;
-            color: #1f2937;
-        }
-
-        .review-text {
-            color: #4b5563;
-            margin-bottom: 0.5rem;
-        }
-
-        .review-date {
-            font-size: 0.75rem;
-            color: #9ca3af;
-        }
-
-        .contact-btn {
-            width: 100%;
-            padding: 0.75rem;
-            margin-top: 1.5rem;
-            background: linear-gradient(135deg, #f97316 0%, #f59e0b 100%);
-            color: white;
-            border: none;
-            border-radius: 0.75rem;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.2s;
-        }
-
-        .contact-btn:hover {
-            box-shadow: 0 10px 15px rgba(249, 115, 22, 0.3);
-        }
-
-        .no-results {
-            text-align: center;
-            padding: 3rem;
-            color: #6b7280;
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LevaAqui - Produtos dos Estudantes</title>
+<link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-    <!-- Header -->
-    <header class="header">
-        <div class="header-content">
-            <div class="logo">
-                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path>
-                </svg>
-            </div>
-            <div class="header-text">
-                <h1>EscolaMarket</h1>
-                <p>Produtos dos Estudantes</p>
-            </div>
-        </div>
-    </header>
 
-    <!-- Main Content -->
-    <main class="container">
-        <!-- Search Section -->
-        <div class="search-section">
-            <div class="search-box">
-                <svg class="search-icon" width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
-                </svg>
-                <input type="text" id="searchInput" placeholder="Procurar produtos...">
-            </div>
-            <div class="filters">
-                <button class="filter-btn active" data-category="Todos">Todos</button>
-                <button class="filter-btn" data-category="Doces">Doces</button>
-                <button class="filter-btn" data-category="Salgados">Salgados</button>
-            </div>
-        </div>
-
-        <!-- Products Grid -->
-        <div class="products-grid" id="productsGrid"></div>
-        <div class="no-results" id="noResults" style="display: none;">
-            Nenhum produto encontrado.
-        </div>
-    </main>
-
-    <!-- Modal -->
-    <div class="modal" id="productModal">
-        <div class="modal-content" id="modalContent"></div>
+<header class="header">
+  <div class="header-content">
+    <div class="logo">🛒</div>
+    <div>
+      <h1>LevaAqui</h1>
+      <p>Plataforma dos Estudantes IMETRO</p>
     </div>
+  </div>
+</header>
 
-    <script>
-        const products = [
-            {
-                id: 1,
-                name: 'Brownies Caseiros',
-                price: 2.50,
-                rating: 4.8,
-                totalReviews: 24,
-                image: 'https://images.unsplash.com/photo-1607920591413-4ec007e70023?w=500',
-                category: 'Doces',
-                seller: {
-                    name: 'Maria Silva',
-                    photo: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=200',
-                    rating: 4.9,
-                    totalSales: 156,
-                    room: 'Sala 204',
-                    availability: 'Segunda a Sexta, 10h-14h',
-                    reviews: [
-                        { author: 'João P.', rating: 5, comment: 'Brownies deliciosos! Muito chocolateado e fresquinho.', date: '2024-01-15' },
-                        { author: 'Ana M.', rating: 5, comment: 'Melhor brownie que já comi!', date: '2024-01-10' },
-                        { author: 'Pedro S.', rating: 4, comment: 'Muito bom, recomendo!', date: '2024-01-08' }
-                    ]
-                }
-            },
-            {
-                id: 2,
-                name: 'Sanduíches Naturais',
-                price: 3.00,
-                rating: 4.6,
-                totalReviews: 18,
-                image: 'https://images.unsplash.com/photo-1509722747041-616f39b57569?w=500',
-                category: 'Salgados',
-                seller: {
-                    name: 'Carlos Santos',
-                    photo: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200',
-                    rating: 4.7,
-                    totalSales: 89,
-                    room: 'Sala 310',
-                    availability: 'Terça e Quinta, 12h-13h',
-                    reviews: [
-                        { author: 'Rita L.', rating: 5, comment: 'Sempre frescos e saudáveis!', date: '2024-01-14' },
-                        { author: 'Miguel A.', rating: 4, comment: 'Bom preço e qualidade.', date: '2024-01-12' }
-                    ]
-                }
-            },
-            {
-                id: 3,
-                name: 'Cookies de Chocolate',
-                price: 1.50,
-                rating: 4.9,
-                totalReviews: 32,
-                image: 'https://images.unsplash.com/photo-1499636136210-6f4ee915583e?w=500',
-                category: 'Doces',
-                seller: {
-                    name: 'Sofia Oliveira',
-                    photo: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=200',
-                    rating: 5.0,
-                    totalSales: 203,
-                    room: 'Sala 115',
-                    availability: 'Diariamente, 11h-15h',
-                    reviews: [
-                        { author: 'Tiago R.', rating: 5, comment: 'Crocantes por fora e macios por dentro, perfeitos!', date: '2024-01-16' },
-                        { author: 'Inês F.', rating: 5, comment: 'Viciante! Compro sempre.', date: '2024-01-13' }
-                    ]
-                }
-            },
-            {
-                id: 4,
-                name: 'Empadas de Frango',
-                price: 2.00,
-                rating: 4.5,
-                totalReviews: 15,
-                image: 'https://images.unsplash.com/photo-1601050690597-df0568f70950?w=500',
-                category: 'Salgados',
-                seller: {
-                    name: 'Ricardo Ferreira',
-                    photo: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=200',
-                    rating: 4.6,
-                    totalSales: 67,
-                    room: 'Sala 208',
-                    availability: 'Segunda, Quarta e Sexta, 13h-14h',
-                    reviews: [
-                        { author: 'Catarina B.', rating: 5, comment: 'Recheio delicioso!', date: '2024-01-09' }
-                    ]
-                }
-            },
-            {
-                id: 5,
-                name: 'Muffins de Frutas',
-                price: 2.20,
-                rating: 4.7,
-                totalReviews: 21,
-                image: 'https://images.unsplash.com/photo-1607958996333-41aef7caefaa?w=500',
-                category: 'Doces',
-                seller: {
-                    name: 'Beatriz Costa',
-                    photo: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=200',
-                    rating: 4.8,
-                    totalSales: 112,
-                    room: 'Sala 102',
-                    availability: 'Segunda a Quinta, 10h-12h',
-                    reviews: [
-                        { author: 'Lucas P.', rating: 5, comment: 'Sabor incrível e muito fofos!', date: '2024-01-15' }
-                    ]
-                }
-            },
-            {
-                id: 6,
-                name: 'Wrap de Vegetais',
-                price: 3.50,
-                rating: 4.4,
-                totalReviews: 12,
-                image: 'https://images.unsplash.com/photo-1626700051175-6818013e1d4f?w=500',
-                category: 'Salgados',
-                seller: {
-                    name: 'Gonçalo Rodrigues',
-                    photo: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=200',
-                    rating: 4.5,
-                    totalSales: 45,
-                    room: 'Sala 305',
-                    availability: 'Quarta e Sexta, 12h-14h',
-                    reviews: [
-                        { author: 'Diana T.', rating: 5, comment: 'Opção saudável e saborosa!', date: '2024-01-13' }
-                    ]
-                }
-            }
-        ];
+<!-- INTRODUÇÃO -->
+<section class="intro">
+  <div class="intro-text">
+    <h2>Bem-vindo ao LevaAqui</h2>
+    <p>
+      O LevaAqui é um projecto criado por estudantes da IMETRO
+      para facilitar a compra e venda de produtos entre alunos
+      e toda a comunidade escolar.
+    </p>
+  </div>
+  <img src="https://images.unsplash.com/photo-1523580846011-d3a5bc25702b?w=900" alt="Grupo de estudantes">
+</section>
 
-        let currentCategory = 'Todos';
-        let searchTerm = '';
+<main class="container">
 
-        function renderStars(rating) {
-            let stars = '';
-            for (let i = 0; i < 5; i++) {
-                stars += `<span class="star">${i < Math.floor(rating) ? '★' : '☆'}</span>`;
-            }
-            return stars;
-        }
+<!-- PESQUISA -->
+<div class="search-box">
+  <input type="text" id="searchInput" placeholder="Pesquisar produto...">
+</div>
 
-        function renderProducts() {
-            const grid = document.getElementById('productsGrid');
-            const noResults = document.getElementById('noResults');
-            
-            const filtered = products.filter(p => {
-                const matchesCategory = currentCategory === 'Todos' || p.category === currentCategory;
-                const matchesSearch = p.name.toLowerCase().includes(searchTerm.toLowerCase());
-                return matchesCategory && matchesSearch;
-            });
+<!-- FILTROS -->
+<div class="filters">
+  <button class="filter-btn active" data-category="Todos">Todos</button>
+  <button class="filter-btn" data-category="Doces">Doces</button>
+  <button class="filter-btn" data-category="Salgados">Salgados</button>
+</div>
 
-            if (filtered.length === 0) {
-                grid.style.display = 'none';
-                noResults.style.display = 'block';
-                return;
-            }
+<!-- PRODUTOS -->
+<div class="products-grid" id="productsGrid"></div>
 
-            grid.style.display = 'grid';
-            noResults.style.display = 'none';
+<p class="no-results" id="noResults">Nenhum produto encontrado</p>
 
-            grid.innerHTML = filtered.map(product => `
-                <div class="product-card" onclick="openModal(${product.id})">
-                    <div class="product-image">
-                        <img src="${product.image}" alt="${product.name}">
-                        <div class="product-price">€${product.price.toFixed(2)}</div>
-                        <div class="product-category">${product.category}</div>
-                    </div>
-                    <div class="product-info">
-                        <h3 class="product-name">${product.name}</h3>
-                        <div class="product-rating">
-                            <div class="stars">${renderStars(product.rating)}</div>
-                            <span class="rating-number">${product.rating}</span>
-                            <span class="reviews-count">(${product.totalReviews} avaliações)</span>
-                        </div>
-                        <div class="seller-info">
-                            <img src="${product.seller.photo}" alt="${product.seller.name}" class="seller-photo">
-                            <div class="seller-details">
-                                <div class="seller-name">${product.seller.name}</div>
-                                <div class="seller-room">${product.seller.room}</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            `).join('');
-        }
+</main>
 
-        function openModal(productId) {
-            const product = products.find(p => p.id === productId);
-            const modal = document.getElementById('productModal');
-            const content = document.getElementById('modalContent');
+<!-- LOCALIZAÇÃO -->
+<section class="location">
+  <div class="location-text">
+    <h2>Visite o nosso espaço físico</h2>
+    <p>
+      Estamos localizados no campus da IMETRO,
+      atrás do campo desportivo.
+    </p>
+  </div>
+  <img src="https://images.unsplash.com/photo-1607237138185-eedd9c632b0b?w=900">
+</section>
 
-            content.innerHTML = `
-                <div class="modal-header">
-                    <img src="${product.image}" alt="${product.name}">
-                    <button class="close-btn" onclick="closeModal()">
-                        <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-                        </svg>
-                    </button>
-                    <div class="modal-price">€${product.price.toFixed(2)}</div>
-                </div>
-                <div class="modal-body">
-                    <h2 class="modal-title">${product.name}</h2>
-                    <div class="product-rating">
-                        <div class="stars">${renderStars(product.rating)}</div>
-                        <span class="rating-number">${product.rating}</span>
-                        <span class="reviews-count">(${product.totalReviews} avaliações)</span>
-                    </div>
+<script>
 
-                    <div class="seller-section">
-                        <h3>Informações do Vendedor</h3>
-                        <div class="seller-header">
-                            <img src="${product.seller.photo}" alt="${product.seller.name}" class="seller-avatar">
-                            <div class="seller-main-info">
-                                <h4>${product.seller.name}</h4>
-                                <div class="seller-stats">
-                                    <div class="stars">${renderStars(product.seller.rating)}</div>
-                                    <span class="rating-number">${product.seller.rating}</span>
-                                    <span>·</span>
-                                    <span>${product.seller.totalSales} vendas</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="seller-grid">
-                            <div class="info-box">
-                                <div class="info-icon">📍</div>
-                                <div>
-                                    <div class="info-label">Localização</div>
-                                    <div class="info-value">${product.seller.room}</div>
-                                </div>
-                            </div>
-                            <div class="info-box">
-                                <div class="info-icon">🕐</div>
-                                <div>
-                                    <div class="info-label">Disponibilidade</div>
-                                    <div class="info-value">${product.seller.availability}</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+const products = [
+ {id:1,name:"Brownies Caseiros",price:800,category:"Doces",image:"https://images.unsplash.com/photo-1607920591413-4ec007e70023?w=500"},
+ {id:2,name:"Sanduíches Naturais",price:1200,category:"Salgados",image:"https://images.unsplash.com/photo-1509722747041-616f39b57569?w=500"},
+ {id:3,name:"Cookies de Chocolate",price:600,category:"Doces",image:"https://images.unsplash.com/photo-1499636136210-6f4ee915583e?w=500"},
+ {id:4,name:"Empadas de Frango",price:700,category:"Salgados",image:"https://images.unsplash.com/photo-1601050690597-df0568f70950?w=500"}
+];
 
-                    <div class="reviews-section">
-                        <h3>Avaliações (${product.seller.reviews.length})</h3>
-                        ${product.seller.reviews.map(review => `
-                            <div class="review-card">
-                                <div class="review-header">
-                                    <span class="review-author">${review.author}</span>
-                                    <div class="stars">${renderStars(review.rating)}</div>
-                                </div>
-                                <p class="review-text">${review.comment}</p>
-                                <p class="review-date">${new Date(review.date).toLocaleDateString('pt-PT')}</p>
-                            </div>
-                        `).join('')}
-                    </div>
+let currentCategory="Todos";
+let searchTerm="";
 
-                    <button class="contact-btn">Contactar Vendedor</button>
-                </div>
-            `;
+function renderProducts(){
+ const grid=document.getElementById("productsGrid");
+ const noResults=document.getElementById("noResults");
 
-            modal.classList.add('active');
-        }
+ const filtered=products.filter(p=>{
+  return (currentCategory==="Todos"||p.category===currentCategory) &&
+         p.name.toLowerCase().includes(searchTerm.toLowerCase());
+ });
 
-        function closeModal() {
-            document.getElementById('productModal').classList.remove('active');
-        }
+ if(filtered.length===0){
+  grid.innerHTML="";
+  noResults.style.display="block";
+  return;
+ }
 
-        // Event Listeners
-        document.getElementById('searchInput').addEventListener('input', (e) => {
-            searchTerm = e.target.value;
-            renderProducts();
-        });
+ noResults.style.display="none";
 
-        document.querySelectorAll('.filter-btn').forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-                e.target.classList.add('active');
-                currentCategory = e.target.dataset.category;
-                renderProducts();
-            });
-        });
+ grid.innerHTML=filtered.map(p=>`
+  <div class="product-card">
+   <img src="${p.image}">
+   <h3>${p.name}</h3>
+   <p class="price">${p.price} Kz</p>
+  </div>
+ `).join("");
+}
 
-        document.getElementById('productModal').addEventListener('click', (e) => {
-            if (e.target.id === 'productModal') closeModal();
-        });
+document.getElementById("searchInput").addEventListener("input",e=>{
+ searchTerm=e.target.value;
+ renderProducts();
+});
 
-        // Initial render
-        renderProducts();
-    </script>
+document.querySelectorAll(".filter-btn").forEach(btn=>{
+ btn.addEventListener("click",e=>{
+  document.querySelectorAll(".filter-btn").forEach(b=>b.classList.remove("active"));
+  e.target.classList.add("active");
+  currentCategory=e.target.dataset.category;
+  renderProducts();
+ });
+});
+
+renderProducts();
+
+</script>
+
 </body>
 </html>
