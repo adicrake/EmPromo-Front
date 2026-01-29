@@ -1,155 +1,37 @@
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:Poppins;
+/* Importar Fonte */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
+
+:root {
+  --primary: #2563eb; /* Azul profissional */
+  --bg: #f8f9fa;      /* Cinza muito claro */
+  --text: #1f2937;    /* Cinza escuro (não use preto puro) */
 }
 
-body{
-background:#f5f7ff;
-color:#1d1d1d;
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
 }
 
-/* TOPBAR */
-.topbar{
-display:flex;
-justify-content:space-between;
-align-items:center;
-padding:20px 50px;
-background:#0f2c8a;
-color:white;
+/* Melhorar Cards/Produtos */
+.card, .produto, .container-item { /* Ajuste para a sua classe */
+  background: white;
+  border: none;
+  border-radius: 12px; /* Cantos arredondados */
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1); /* Sombra suave */
+  transition: transform 0.2s ease;
 }
 
-.topbar a{
-color:white;
-margin-left:25px;
-text-decoration:none;
+.card:hover {
+  transform: translateY(-5px); /* Efeito de levitação */
 }
 
-/* HERO */
-.hero{
-min-height:80vh;
-display:flex;
-align-items:center;
-padding:0 50px;
-background:linear-gradient(135deg,#fff2b8,#dbe4ff);
-}
-
-.hero h1{
-font-size:55px;
-color:#0f2c8a;
-}
-
-.hero p{
-margin:20px 0;
-max-width:450px;
-}
-
-.hero button{
-padding:14px 28px;
-border:none;
-border-radius:30px;
-background:#0f2c8a;
-color:white;
-font-size:16px;
-cursor:pointer;
-}
-
-/* CATEGORIES */
-.categories{
-display:flex;
-justify-content:center;
-gap:15px;
-padding:30px;
-flex-wrap:wrap;
-}
-
-.cat{
-padding:10px 22px;
-border-radius:30px;
-border:none;
-background:#e0e6ff;
-cursor:pointer;
-}
-
-.cat.active{
-background:#ffd200;
-}
-
-/* GRID */
-.grid{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-gap:25px;
-padding:40px 50px;
-}
-
-.card{
-background:white;
-padding:25px;
-border-radius:22px;
-box-shadow:0 10px 30px rgba(0,0,0,.08);
-transition:.3s;
-}
-
-.card:hover{
-transform:translateY(-8px);
-}
-
-.card span{
-color:#0f2c8a;
-font-weight:600;
-}
-
-/* STARS */
-.stars{
-color:#f4b400;
-margin-top:8px;
-}
-
-/* VENDORS */
-.section-title{
-text-align:center;
-font-size:32px;
-margin-top:50px;
-}
-
-.vendors{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-gap:25px;
-padding:40px 50px;
-}
-
-.vendor{
-background:white;
-padding:25px;
-border-radius:22px;
-box-shadow:0 10px 30px rgba(0,0,0,.08);
-text-align:center;
-}
-
-/* SPACE */
-.space{
-display:flex;
-flex-wrap:wrap;
-gap:40px;
-align-items:center;
-padding:60px 50px;
-background:#0f2c8a;
-color:white;
-}
-
-.space img{
-width:100%;
-max-width:420px;
-border-radius:25px;
-}
-
-/* FOOTER */
-footer{
-text-align:center;
-padding:25px;
-background:#081b55;
-color:white;
+/* Botões Modernos */
+button, .btn {
+  border-radius: 8px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  transition: all 0.3s;
 }
