@@ -1,248 +1,60 @@
 <!DOCTYPE html>
-<html lang="pt-PT">
+<html lang="pt">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>LevaAqui - IMETRO</title>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-  <style>
-    /* ===== Geral ===== */
-    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Roboto', sans-serif; }
-    body { background-color: #fef9f0; color: #1f2937; line-height: 1.6; }
-    a { text-decoration: none; color: inherit; }
-    img { max-width: 100%; border-radius: 10px; }
+<meta charset="UTF-8">
+<title>LevaAqui | Ecossistema de Empreendedorismo Jovem</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    /* ===== Cores ===== */
-    :root {
-      --amarelo: #facc15;
-      --azul: #3b82f6;
-      --cinza-claro: #f3f4f6;
-      --cinza-escuro: #4b5563;
-    }
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
-    /* ===== Header ===== */
-    header {
-      background: linear-gradient(90deg, var(--azul), var(--amarelo));
-      color: white;
-      padding: 40px 20px;
-      text-align: center;
-      position: relative;
-    }
-    header h1 { font-size: 3em; margin-bottom: 10px; }
-    header p { font-size: 1.2em; max-width: 700px; margin: 0 auto; animation: fadeIn 2s; }
-    header img { max-width: 250px; margin-top: 20px; border-radius: 15px; animation: fadeIn 3s; }
-
-    /* ===== Pesquisa ===== */
-    .search-container { margin: 20px auto; max-width: 600px; text-align: center; }
-    .search-container input {
-      width: 80%; padding: 12px 15px; border-radius: 25px; border: 2px solid var(--azul);
-      outline: none; font-size: 1em; transition: all 0.3s ease;
-    }
-    .search-container input:focus { border-color: var(--amarelo); }
-
-    /* ===== Abas ===== */
-    .tabs { display: flex; justify-content: center; margin: 20px 0; flex-wrap: wrap; }
-    .tab { padding: 10px 20px; margin: 5px; border-radius: 25px; background: var(--azul); color: white; cursor: pointer; transition: 0.3s; }
-    .tab.active { background: var(--amarelo); color: #1f2937; }
-    .tab:hover { opacity: 0.8; }
-
-    /* ===== Produtos ===== */
-    .products { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; padding: 0 20px; }
-    .product-card {
-      background: white; border-radius: 15px; padding: 15px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-      transition: transform 0.3s, box-shadow 0.3s;
-      opacity: 0; animation: fadeInUp 1s forwards;
-    }
-    .product-card:hover { transform: translateY(-5px); box-shadow: 0 6px 15px rgba(0,0,0,0.2); }
-    .product-card img { border-radius: 10px; }
-    .product-info { margin-top: 10px; }
-    .product-info h3 { margin-bottom: 5px; }
-    .price { color: var(--azul); font-weight: bold; font-size: 1.2em; margin-bottom: 5px; }
-    .seller {
-      display: flex; align-items: center; margin-top: 10px;
-    }
-    .seller img { width: 40px; height: 40px; border-radius: 50%; margin-right: 10px; }
-    .stars { color: #fbbf24; }
-
-    /* ===== Vendedores ===== */
-    .vendors { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; padding: 20px; }
-    .vendor-card { background: white; padding: 15px; border-radius: 15px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); text-align: center; }
-    .vendor-card img { width: 80px; height: 80px; border-radius: 50%; margin-bottom: 10px; }
-    .vendor-card h4 { margin-bottom: 5px; }
-
-    /* ===== Espaço Físico ===== */
-    .physical-space { background: var(--cinza-claro); padding: 40px 20px; text-align: center; margin-top: 30px; border-radius: 15px; }
-    .physical-space img { max-width: 400px; margin-top: 20px; border-radius: 15px; }
-
-    /* ===== Animations ===== */
-    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-    @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-
-    /* ===== Responsivo ===== */
-    @media(max-width: 600px) { header h1 { font-size: 2em; } }
-  </style>
 </head>
 <body>
 
-  <!-- Header / Introdução -->
-  <header>
-    <h1>LevaAqui</h1>
-    <p>Criação de estudantes do Instituto Superior Politécnico de Angola - IMETRO. Um espaço para facilitar a venda e compra de produtos entre alunos e não só!</p>
-    <img src="https://images.unsplash.com/photo-1603415526960-f1b4e3edc6e0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxfDB8MXxyYW5kb218MHx8Z3JvdXB8fHx8fDE2OTU2MjEyODU&ixlib=rb-4.0.3&q=80&w=400" alt="Grupo de estudantes">
-  </header>
+<header class="hero">
+  <nav>
+    <h1>Leva<span>Aqui</span></h1>
+    <input type="text" id="search" placeholder="Pesquisar produto...">
+  </nav>
 
-  <!-- Pesquisa -->
-  <div class="search-container">
-    <input type="text" id="search" placeholder="Pesquisar produtos...">
+  <div class="hero-text">
+    <h2>Ecossistema de Empreendedorismo Jovem</h2>
+    <p>Plataforma criada por estudantes do Instituto Superior Politécnico de Angola (IMETRO) para facilitar a venda de produtos entre estudantes.</p>
   </div>
+</header>
 
-  <!-- Abas -->
-  <div class="tabs">
-    <div class="tab active" onclick="filterProducts('todos')">Todos</div>
-    <div class="tab" onclick="filterProducts('gelados')">Gelados</div>
-    <div class="tab" onclick="filterProducts('bebidas')">Bebidas</div>
-    <div class="tab" onclick="filterProducts('salgados')">Salgados</div>
-    <div class="tab" onclick="filterProducts('menos200')">Abaixo de 200 Kz</div>
-    <div class="tab" onclick="showVendors()">Vendedores</div>
+<section class="intro">
+  <img src="https://images.unsplash.com/photo-1523580846011-d3a5bc25702b">
+  <div>
+    <h3>Quem Somos</h3>
+    <p>Um projecto académico que impulsiona jovens empreendedores através da tecnologia.</p>
   </div>
+</section>
 
-  <!-- Produtos -->
-  <div class="products" id="products">
-    <!-- Produto Exemplo 1 -->
-    <div class="product-card" data-category="gelados" data-price="150">
-      <img src="https://images.unsplash.com/photo-1617196037573-3f6bb3dbb7b3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=400" alt="Gelado">
-      <div class="product-info">
-        <h3>Gelado Chocolate</h3>
-        <div class="price">150 Kz</div>
-        <div class="seller">
-          <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Vendedor">
-          <div>João - ⭐⭐⭐⭐☆</div>
-        </div>
-      </div>
-    </div>
+<section class="tabs">
+<button data-cat="todos" class="active">Todos</button>
+<button data-cat="gelados">Gelados</button>
+<button data-cat="bebidas">Bebidas</button>
+<button data-cat="salgados">Salgados</button>
+<button data-cat="baixo">Abaixo de 200Kz</button>
+<button data-cat="vendedores">Vendedores</button>
+</section>
 
-    <!-- Produto Exemplo 2 -->
-    <div class="product-card" data-category="bebidas" data-price="250">
-      <img src="https://images.unsplash.com/photo-1598514982925-30e8eab206b3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=400" alt="Bebida">
-      <div class="product-info">
-        <h3>Suco Natural</h3>
-        <div class="price">250 Kz</div>
-        <div class="seller">
-          <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Vendedor">
-          <div>Maria - ⭐⭐⭐⭐⭐</div>
-        </div>
-      </div>
-    </div>
+<section id="container" class="products"></section>
 
-    <!-- Produto Exemplo 3 -->
-    <div class="product-card" data-category="salgados" data-price="180">
-      <img src="https://images.unsplash.com/photo-1617196037573-3f6bb3dbb7b3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=400" alt="Salgado">
-      <div class="product-info">
-        <h3>Coxinha</h3>
-        <div class="price">180 Kz</div>
-        <div class="seller">
-          <img src="https://randomuser.me/api/portraits/men/65.jpg" alt="Vendedor">
-          <div>Carlos - ⭐⭐⭐⭐☆</div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Produto Exemplo 4 -->
-    <div class="product-card" data-category="gelados" data-price="300">
-      <img src="https://images.unsplash.com/photo-1589377504320-05f5fc79f416?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=400" alt="Gelado">
-      <div class="product-info">
-        <h3>Gelado Morango</h3>
-        <div class="price">300 Kz</div>
-        <div class="seller">
-          <img src="https://randomuser.me/api/portraits/women/55.jpg" alt="Vendedor">
-          <div>Ana - ⭐⭐⭐⭐☆</div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Produto Exemplo 5 -->
-    <div class="product-card" data-category="bebidas" data-price="180">
-      <img src="https://images.unsplash.com/photo-1600891964599-f61ba0e24092?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=400" alt="Bebida">
-      <div class="product-info">
-        <h3>Refrigerante Lata</h3>
-        <div class="price">180 Kz</div>
-        <div class="seller">
-          <img src="https://randomuser.me/api/portraits/men/77.jpg" alt="Vendedor">
-          <div>Pedro - ⭐⭐⭐⭐☆</div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Produto Exemplo 6 -->
-    <div class="product-card" data-category="salgados" data-price="220">
-      <img src="https://images.unsplash.com/photo-1627311158223-14d76e4873a8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=400" alt="Salgado">
-      <div class="product-info">
-        <h3>Pastel</h3>
-        <div class="price">220 Kz</div>
-        <div class="seller">
-          <img src="https://randomuser.me/api/portraits/women/66.jpg" alt="Vendedor">
-          <div>Rita - ⭐⭐⭐⭐⭐</div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Produto Exemplo 7 -->
-    <div class="product-card" data-category="gelados" data-price="200">
-      <img src="https://images.unsplash.com/photo-1563805042-7684c019e1cb?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=400" alt="Gelado">
-      <div class="product-info">
-        <h3>Gelado Baunilha</h3>
-        <div class="price">200 Kz</div>
-        <div class="seller">
-          <img src="https://randomuser.me/api/portraits/men/22.jpg" alt="Vendedor">
-          <div>Lucas - ⭐⭐⭐⭐☆</div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Produto Exemplo 8 -->
-    <div class="product-card" data-category="bebidas" data-price="150">
-      <img src="https://images.unsplash.com/photo-1598514982925-30e8eab206b3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=400" alt="Bebida">
-      <div class="product-info">
-        <h3>Água Mineral</h3>
-        <div class="price">150 Kz</div>
-        <div class="seller">
-          <img src="https://randomuser.me/api/portraits/women/88.jpg" alt="Vendedor">
-          <div>Beatriz - ⭐⭐⭐⭐☆</div>
-        </div>
-      </div>
-    </div>
+<section class="location">
+  <div>
+    <h3>Nosso Espaço Físico</h3>
+    <p>Visite-nos no campus da IMETRO, atrás do campo.</p>
+    <p>Onde sonhos ganham forma e ideias se tornam negócios.</p>
   </div>
+  <img src="https://images.unsplash.com/photo-1507209696998-3c532be9b2b5">
+</section>
 
-  <!-- Vendedores -->
-  <div class="vendors" id="vendors" style="display:none;">
-    <div class="vendor-card">
-      <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="João">
-      <h4>João</h4>
-      <p>Sala: 101</p>
-      <p>Tempo de venda: 6 meses</p>
-      <p>⭐ ⭐ ⭐ ⭐ ☆</p>
-    </div>
-    <div class="vendor-card">
-      <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Maria">
-      <h4>Maria</h4>
-      <p>Sala: 102</p>
-      <p>Tempo de venda: 1 ano</p>
-      <p>⭐ ⭐ ⭐ ⭐ ⭐</p>
-    </div>
-    <div class="vendor-card">
-      <img src="https://randomuser.me/api/portraits/men/65.jpg" alt="Carlos">
-      <h4>Carlos</h4>
-      <p>Sala: 103</p>
-      <p>Tempo de venda: 8 meses</p>
-      <p>⭐ ⭐ ⭐ ⭐ ☆</p>
-    </div>
-  </div>
+<footer>
+<p>LevaAqui © 2026 | Projecto IMETRO</p>
+</footer>
 
-  <!-- Espaço Físico -->
-  <div class="physical-space">
-    <h2>Visite o nosso espaço físico!</h2>
-    <p>Estamos localizados no campus da IMETRO, atrás do campo. Venha conhecer os nossos produtos e interagir com os vendedores!</p>
-    <img src="https://images.unsplash.com/photo-1596496058137-1f947bb0e321?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=400" alt="Espaço físico IMETRO">
-  </div>
-
-  <script>
+<script src="script.js" defer></script>
+</body>
+</html>
