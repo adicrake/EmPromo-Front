@@ -1,37 +1,138 @@
-/* Importar Fonte */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
-
-:root {
-  --primary: #2563eb; /* Azul profissional */
-  --bg: #f8f9fa;      /* Cinza muito claro */
-  --text: #1f2937;    /* Cinza escuro (não use preto puro) */
+body{
+margin:0;
+font-family:Arial, sans-serif;
+background:#f8fafc;
+color:#1f2933;
 }
 
-body {
-  font-family: 'Inter', sans-serif;
-  background-color: var(--bg);
-  color: var(--text);
-  line-height: 1.6;
+.hero{
+background:linear-gradient(135deg,#2563eb,#facc15);
+padding:40px;
+color:white;
 }
 
-/* Melhorar Cards/Produtos */
-.card, .produto, .container-item { /* Ajuste para a sua classe */
-  background: white;
-  border: none;
-  border-radius: 12px; /* Cantos arredondados */
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1); /* Sombra suave */
-  transition: transform 0.2s ease;
+nav{
+display:flex;
+justify-content:space-between;
+align-items:center;
 }
 
-.card:hover {
-  transform: translateY(-5px); /* Efeito de levitação */
+nav h1 span{color:#fde047;}
+
+nav input{
+padding:10px;
+border:none;
+border-radius:8px;
+width:220px;
 }
 
-/* Botões Modernos */
-button, .btn {
-  border-radius: 8px;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  transition: all 0.3s;
+.hero-text{
+max-width:600px;
+margin-top:40px;
+animation:fade 1.5s;
+}
+
+@keyframes fade{
+from{opacity:0;transform:translateY(20px);}
+to{opacity:1;transform:translateY(0);}
+}
+
+.intro{
+display:flex;
+gap:20px;
+padding:50px;
+align-items:center;
+}
+
+.intro img{
+width:300px;
+border-radius:16px;
+}
+
+.tabs{
+display:flex;
+justify-content:center;
+gap:10px;
+padding:20px;
+flex-wrap:wrap;
+}
+
+.tabs button{
+padding:10px 18px;
+border:none;
+border-radius:20px;
+background:#e5e7eb;
+cursor:pointer;
+}
+
+.tabs .active{
+background:#2563eb;
+color:white;
+}
+
+.products{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:20px;
+padding:40px;
+}
+
+.card{
+background:white;
+border-radius:20px;
+padding:20px;
+box-shadow:0 10px 25px rgba(0,0,0,.08);
+transition:.3s;
+animation:fade 1s;
+}
+
+.card:hover{
+transform:translateY(-5px);
+}
+
+.card img{
+width:100%;
+border-radius:12px;
+}
+
+.price{
+color:#2563eb;
+font-weight:bold;
+}
+
+.vendor{
+display:flex;
+align-items:center;
+gap:10px;
+margin-top:10px;
+}
+
+.vendor img{
+width:40px;
+height:40px;
+border-radius:50%;
+}
+
+.stars{
+color:#facc15;
+}
+
+.location{
+display:flex;
+padding:50px;
+gap:20px;
+align-items:center;
+background:#eef2ff;
+}
+
+.location img{
+width:300px;
+border-radius:16px;
+}
+
+footer{
+background:#1f2933;
+color:white;
+text-align:center;
+padding:20px;
 }
