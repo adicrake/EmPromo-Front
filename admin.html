@@ -1,35 +1,52 @@
 <!DOCTYPE html>
 <html lang="pt">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Admin - EmPromo</title>
-  <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<title>LevaAqui ADM</title>
+<link rel="stylesheet" href="admin.css">
 </head>
+
 <body>
-  <header>
-    <h1>🛠 Painel de Administração</h1>
-  </header>
 
-  <section class="form-section">
-    <h2>Adicionar Produto</h2>
-    <form id="product-form">
-      <input type="text" id="name" placeholder="Nome do produto" required>
-      <input type="text" id="description" placeholder="Descrição" required>
-      <input type="text" id="image" placeholder="URL da imagem" required>
-      <input type="number" id="oldPrice" placeholder="Preço antigo (Kz)" required>
-      <input type="number" id="newPrice" placeholder="Preço novo (Kz)" required>
-      <input type="number" id="discount" placeholder="Desconto (%)" required>
-      <input type="datetime-local" id="endTime" required>
-      <button type="submit">Salvar Produto</button>
-    </form>
-  </section>
+<div class="login" id="loginBox">
+<h2>LevaAqui Admin</h2>
+<input id="user" placeholder="Usuário">
+<input id="pass" type="password" placeholder="Senha">
+<button onclick="login()">Entrar</button>
+</div>
 
-  <section class="list-section">
-    <h2>Lista de Produtos</h2>
-    <div id="product-list"></div>
-  </section>
+<div class="dashboard" id="dashboard">
+<aside>
+<h2>LevaAqui</h2>
+<button onclick="showForm()">Cadastrar Produto</button>
+<button onclick="showList()">Produtos</button>
+</aside>
 
-  <script src="script.js"></script>
+<main>
+
+<div id="formBox">
+<h3>Novo Produto</h3>
+
+<input id="pname" placeholder="Nome do Produto">
+<input id="pprice" placeholder="Preço (Kz)">
+<select id="pcat">
+<option value="gelados">Gelados</option>
+<option value="bebidas">Bebidas</option>
+<option value="salgados">Salgados</option>
+</select>
+
+<input id="pimg" placeholder="Link da imagem do produto">
+<input id="vname" placeholder="Nome do vendedor">
+<input id="vimg" placeholder="Link foto vendedor">
+
+<button onclick="saveProduct()">Guardar</button>
+</div>
+
+<div id="listBox"></div>
+
+</main>
+</div>
+
+<script src="admin.js"></script>
 </body>
 </html>
