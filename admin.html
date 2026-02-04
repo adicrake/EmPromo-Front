@@ -2,49 +2,67 @@
 <html lang="pt">
 <head>
 <meta charset="UTF-8">
-<title>LevaAqui ADM</title>
+<title>LevaAqui Admin</title>
 <link rel="stylesheet" href="admin.css">
 </head>
 
 <body>
 
-<div class="login" id="loginBox">
-<h2>LevaAqui Admin</h2>
+<div id="loginBox" class="login">
+<h2>LevaAqui | Administração</h2>
 <input id="user" placeholder="Usuário">
 <input id="pass" type="password" placeholder="Senha">
 <button onclick="login()">Entrar</button>
 </div>
 
-<div class="dashboard" id="dashboard">
+<div id="dashboard" class="dashboard">
+
 <aside>
 <h2>LevaAqui</h2>
-<button onclick="showForm()">Cadastrar Produto</button>
-<button onclick="showList()">Produtos</button>
+<button onclick="openVendors()">Vendedores</button>
+<button onclick="openProducts()">Produtos</button>
 </aside>
 
 <main>
 
-<div id="formBox">
-<h3>Novo Produto</h3>
+<section id="vendorsBox" class="box">
+<h3>Cadastrar Vendedor</h3>
+<input id="vName" placeholder="Nome">
+<input id="vSala" placeholder="Sala">
+<input type="file" id="vImg">
 
-<input id="pname" placeholder="Nome do Produto">
-<input id="pprice" placeholder="Preço (Kz)">
-<select id="pcat">
-<option value="gelados">Gelados</option>
-<option value="bebidas">Bebidas</option>
-<option value="salgados">Salgados</option>
+<button onclick="saveVendor()">Guardar Vendedor</button>
+
+<div id="vendorsList"></div>
+</section>
+
+<section id="productsBox" class="box">
+<h3>Cadastrar Produto</h3>
+
+<input id="pName" placeholder="Nome do Produto">
+<input id="pPrice" type="number" placeholder="Preço">
+
+<select id="pCat">
+<option>Gelados</option>
+<option>Bebidas</option>
+<option>Salgados</option>
+<option>Doces</option>
+<option>Fast Food</option>
+<option>Lanches</option>
+<option>Outros</option>
 </select>
 
-<input id="pimg" placeholder="Link da imagem do produto">
-<input id="vname" placeholder="Nome do vendedor">
-<input id="vimg" placeholder="Link foto vendedor">
+<select id="pVendor"></select>
 
-<button onclick="saveProduct()">Guardar</button>
-</div>
+<input type="file" id="pImg">
 
-<div id="listBox"></div>
+<button onclick="saveProduct()">Guardar Produto</button>
+
+<div id="productsList"></div>
+</section>
 
 </main>
+
 </div>
 
 <script src="admin.js"></script>
