@@ -1,87 +1,89 @@
-body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: #f7f7f7;
-    margin: 0;
-    padding: 0;
+body{
+margin:0;
+font-family:Arial;
+background:#f1f5f9;
 }
 
-.container {
-    width: 450px;
-    margin: 50px auto;
-    background: #fff9e6; /* amarelo suave */
-    padding: 30px;
-    border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+.login{
+max-width:350px;
+margin:120px auto;
+background:white;
+padding:30px;
+border-radius:12px;
+text-align:center;
+box-shadow:0 10px 30px rgba(0,0,0,.15);
 }
 
-h1 {
-    text-align: center;
-    color: #0f4c81; /* azul suave */
+.login input, .login button{
+width:100%;
+padding:12px;
+margin-top:10px;
+border-radius:6px;
+border:1px solid #ccc;
 }
 
-p {
-    text-align: center;
-    font-size: 14px;
-    color: #333;
+.login button{
+background:#2563eb;
+color:white;
+border:none;
 }
 
-.form-group {
-    margin-bottom: 20px;
+.dashboard{
+display:none;
 }
 
-label {
-    display: block;
-    font-weight: bold;
-    margin-bottom: 6px;
+aside{
+width:220px;
+background:#1e3a8a;
+color:white;
+height:100vh;
+padding:20px;
+float:left;
 }
 
-input[type="text"], input[type="file"], select {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-    box-sizing: border-box;
+aside button{
+width:100%;
+padding:12px;
+margin-top:10px;
+border:none;
+border-radius:6px;
+background:#facc15;
+cursor:pointer;
 }
 
-select {
-    height: 120px;
+main{
+margin-left:220px;
+padding:30px;
 }
 
-button.btn {
-    width: 100%;
-    padding: 12px;
-    background: #0f4c81;
-    color: #fff;
-    border: none;
-    border-radius: 8px;
-    font-size: 16px;
-    cursor: pointer;
-    transition: 0.3s;
+.box{
+background:white;
+padding:20px;
+border-radius:12px;
+box-shadow:0 10px 25px rgba(0,0,0,.1);
+display:none;
 }
 
-button.btn:hover {
-    background: #065a9e;
+.box input, .box select, .box button{
+width:100%;
+padding:10px;
+margin-top:10px;
+border-radius:6px;
+border:1px solid #ccc;
 }
 
-.stars {
-    display: flex;
-    flex-direction: row-reverse;
-    justify-content: flex-end;
+.box button{
+background:#2563eb;
+color:white;
+border:none;
 }
 
-.stars input[type="radio"] {
-    display: none;
-}
-
-.stars label {
-    font-size: 22px;
-    color: #ccc;
-    cursor: pointer;
-    transition: 0.3s;
-}
-
-.stars input:checked ~ label,
-.stars label:hover,
-.stars label:hover ~ label {
-    color: #ffcc00;
+.item{
+background:#f8fafc;
+padding:10px;
+border-radius:8px;
+margin-top:10px;
+display:flex;
+justify-content:space-between;
+align-items:center;
 }
