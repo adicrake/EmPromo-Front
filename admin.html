@@ -1,65 +1,70 @@
 <!DOCTYPE html>
 <html lang="pt">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cadastro de Vendedores - LevaAqui</title>
-    <link rel="stylesheet" href="admin_vendedores.css">
+<meta charset="UTF-8">
+<title>LevaAqui Admin</title>
+<link rel="stylesheet" href="admin.css">
 </head>
+
 <body>
-    <div class="container">
-        <h1>Cadastro de Vendedores</h1>
-        <p>Preencha os dados do vendedor. O ADM define as informações iniciais.</p>
 
-        <form id="vendedorForm">
-            <div class="form-group">
-                <label for="nome">Nome do Vendedor:</label>
-                <input type="text" id="nome" name="nome" placeholder="Ex: João Silva" required>
-            </div>
+<div id="loginBox" class="login">
+<h2>LevaAqui | Administração</h2>
+<input id="user" placeholder="Usuário">
+<input id="pass" type="password" placeholder="Senha">
+<button onclick="login()">Entrar</button>
+</div>
 
-            <div class="form-group">
-                <label for="foto">Foto do Vendedor:</label>
-                <input type="file" id="foto" name="foto" accept="image/*" required>
-            </div>
+<div id="dashboard" class="dashboard">
 
-            <div class="form-group">
-                <label for="sala">Sala de Aula / Local:</label>
-                <input type="text" id="sala" name="sala" placeholder="Ex: Sala 101" required>
-            </div>
+<aside>
+<h2>LevaAqui</h2>
+<button onclick="openVendors()">Vendedores</button>
+<button onclick="openProducts()">Produtos</button>
+</aside>
 
-            <div class="form-group">
-                <label for="tempo">Tempo de Venda:</label>
-                <input type="text" id="tempo" name="tempo" placeholder="Ex: 2 anos" required>
-            </div>
+<main>
 
-            <div class="form-group">
-                <label>Classificação:</label>
-                <div class="stars">
-                    <input type="radio" name="estrela" value="5" id="star5"><label for="star5">★</label>
-                    <input type="radio" name="estrela" value="4" id="star4"><label for="star4">★</label>
-                    <input type="radio" name="estrela" value="3" id="star3"><label for="star3">★</label>
-                    <input type="radio" name="estrela" value="2" id="star2"><label for="star2">★</label>
-                    <input type="radio" name="estrela" value="1" id="star1"><label for="star1">★</label>
-                </div>
-            </div>
+<section id="vendorsBox" class="box">
+<h3>Cadastrar Vendedor</h3>
+<input id="vName" placeholder="Nome">
+<input id="vSala" placeholder="Sala">
+<input type="file" id="vImg">
 
-            <div class="form-group">
-                <label for="categorias">Categorias de Produtos:</label>
-                <select id="categorias" name="categorias" multiple required>
-                    <option value="gelados">Gelados</option>
-                    <option value="bebidas">Bebidas</option>
-                    <option value="salgados">Salgados</option>
-                    <option value="doces">Doces</option>
-                    <option value="sandwiches">Sandwiches</option>
-                    <option value="snacks">Snacks</option>
-                </select>
-                <small>Segure CTRL para selecionar mais de uma categoria</small>
-            </div>
+<button onclick="saveVendor()">Guardar Vendedor</button>
 
-            <button type="submit" class="btn">Cadastrar Vendedor</button>
-        </form>
-    </div>
+<div id="vendorsList"></div>
+</section>
 
-    <script src="admin_vendedores.js"></script>
+<section id="productsBox" class="box">
+<h3>Cadastrar Produto</h3>
+
+<input id="pName" placeholder="Nome do Produto">
+<input id="pPrice" type="number" placeholder="Preço">
+
+<select id="pCat">
+<option>Gelados</option>
+<option>Bebidas</option>
+<option>Salgados</option>
+<option>Doces</option>
+<option>Fast Food</option>
+<option>Lanches</option>
+<option>Outros</option>
+</select>
+
+<select id="pVendor"></select>
+
+<input type="file" id="pImg">
+
+<button onclick="saveProduct()">Guardar Produto</button>
+
+<div id="productsList"></div>
+</section>
+
+</main>
+
+</div>
+
+<script src="admin.js"></script>
 </body>
 </html>
