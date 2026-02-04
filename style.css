@@ -1,138 +1,78 @@
 body{
 margin:0;
-font-family:Arial, sans-serif;
-background:#f8fafc;
-color:#1f2933;
+font-family:Segoe UI, sans-serif;
+background:#f6f8fb;
 }
 
-.hero{
-background:linear-gradient(135deg,#2563eb,#facc15);
-padding:40px;
+header{
+text-align:center;
+padding:30px;
+background:#0f4c81;
 color:white;
 }
 
-nav{
-display:flex;
-justify-content:space-between;
-align-items:center;
-}
-
-nav h1 span{color:#fde047;}
-
-nav input{
-padding:10px;
-border:none;
-border-radius:8px;
-width:220px;
-}
-
-.hero-text{
-max-width:600px;
-margin-top:40px;
-animation:fade 1.5s;
-}
-
-@keyframes fade{
-from{opacity:0;transform:translateY(20px);}
-to{opacity:1;transform:translateY(0);}
-}
-
-.intro{
-display:flex;
-gap:20px;
-padding:50px;
-align-items:center;
-}
-
-.intro img{
-width:300px;
-border-radius:16px;
-}
-
-.tabs{
-display:flex;
-justify-content:center;
-gap:10px;
-padding:20px;
-flex-wrap:wrap;
-}
-
-.tabs button{
-padding:10px 18px;
-border:none;
-border-radius:20px;
-background:#e5e7eb;
-cursor:pointer;
-}
-
-.tabs .active{
-background:#2563eb;
-color:white;
-}
-
-.products{
+.produtos{
 display:grid;
 grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-gap:20px;
+gap:25px;
 padding:40px;
 }
 
 .card{
 background:white;
-border-radius:20px;
-padding:20px;
-box-shadow:0 10px 25px rgba(0,0,0,.08);
+border-radius:18px;
+overflow:hidden;
+box-shadow:0 10px 25px rgba(0,0,0,0.1);
 transition:.3s;
-animation:fade 1s;
+animation:fadeUp .6s ease;
 }
 
 .card:hover{
-transform:translateY(-5px);
+transform:translateY(-8px);
+box-shadow:0 20px 35px rgba(0,0,0,0.15);
 }
 
-.card img{
+.produto-img{
 width:100%;
-border-radius:12px;
+height:200px;
+object-fit:cover;
 }
 
-.price{
-color:#2563eb;
+.info{
+padding:15px;
+}
+
+.preco{
+color:#f5b400;
 font-weight:bold;
+font-size:18px;
 }
 
-.vendor{
+.estrelas{
+color:#f5b400;
+margin:6px 0;
+}
+
+.vendedor{
 display:flex;
 align-items:center;
 gap:10px;
 margin-top:10px;
 }
 
-.vendor img{
+.vendedor img{
 width:40px;
 height:40px;
 border-radius:50%;
+object-fit:cover;
 }
 
-.stars{
-color:#facc15;
+.online{
+color:green;
+font-size:12px;
 }
 
-.location{
-display:flex;
-padding:50px;
-gap:20px;
-align-items:center;
-background:#eef2ff;
-}
-
-.location img{
-width:300px;
-border-radius:16px;
-}
-
-footer{
-background:#1f2933;
-color:white;
-text-align:center;
-padding:20px;
+@keyframes fadeUp{
+from{opacity:0;transform:translateY(20px);}
+to{opacity:1;transform:translateY(0);}
 }
