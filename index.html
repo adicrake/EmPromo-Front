@@ -2,59 +2,41 @@
 <html lang="pt">
 <head>
 <meta charset="UTF-8">
-<title>LevaAqui | Ecossistema de Empreendedorismo Jovem</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+<title>LevaAqui</title>
 <link rel="stylesheet" href="style.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-
 </head>
+
 <body>
 
-<header class="hero">
-  <nav>
-    <h1>Leva<span>Aqui</span></h1>
-    <input type="text" id="search" placeholder="Pesquisar produto...">
-  </nav>
-
-  <div class="hero-text">
-    <h2>Ecossistema de Empreendedorismo Jovem</h2>
-    <p>Plataforma criada por estudantes do Instituto Superior Politécnico de Angola (IMETRO) para facilitar a venda de produtos entre estudantes.</p>
-  </div>
+<header>
+  <h1>LevaAqui</h1>
+  <p>Venda e compra de produtos no campus da IMETRO</p>
 </header>
 
-<section class="intro">
-  <img src="https://images.unsplash.com/photo-1523580846011-d3a5bc25702b">
-  <div>
-    <h3>Quem Somos</h3>
-    <p>Um projecto académico que impulsiona jovens empreendedores através da tecnologia.</p>
+<section class="produtos">
+
+<div class="card">
+  <img src="https://images.unsplash.com/photo-1601924638867-3ec62d7b7f8b" class="produto-img">
+
+  <div class="info">
+    <h3>Coca-Cola</h3>
+    <span class="preco">200 Kz</span>
+
+    <div class="estrelas">★★★★★</div>
+
+    <div class="vendedor">
+      <img src="https://randomuser.me/api/portraits/men/32.jpg">
+      <div>
+        <small>João Silva</small>
+        <span class="online">🟢 Online</span>
+      </div>
+    </div>
   </div>
+</div>
+
 </section>
 
-<section class="tabs">
-<button data-cat="todos" class="active">Todos</button>
-<button data-cat="gelados">Gelados</button>
-<button data-cat="bebidas">Bebidas</button>
-<button data-cat="salgados">Salgados</button>
-<button data-cat="baixo">Abaixo de 200Kz</button>
-<button data-cat="vendedores">Vendedores</button>
-</section>
-
-<section id="container" class="products"></section>
-
-<section class="location">
-  <div>
-    <h3>Nosso Espaço Físico</h3>
-    <p>Visite-nos no campus da IMETRO, atrás do campo.</p>
-    <p>Onde sonhos ganham forma e ideias se tornam negócios.</p>
-  </div>
-  <img src="https://images.unsplash.com/photo-1507209696998-3c532be9b2b5">
-</section>
-
-<footer>
-<p>LevaAqui © 2026 | Projecto IMETRO</p>
-</footer>
-
-<script src="script.js" defer></script>
+<script src="script.js"></script>
 </body>
 </html>
