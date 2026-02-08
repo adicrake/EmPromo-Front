@@ -1,50 +1,68 @@
 <!DOCTYPE html>
 <html lang="pt">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>LevaAqui</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>LevaAqui – IMETRO</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<header class="topo">
-  <h1>LevaAqui</h1>
-  <p>Compra e venda de produtos no campus da IMETRO</p>
-</header>
+  <!-- HEADER -->
+  <header>
+    <div class="container">
+      <h1>LevaAqui</h1>
+      <p class="subtitle">Compra e vende produtos dentro do campus do IMETRO</p>
+    </div>
+  </header>
 
-<main class="container">
+  <!-- MAIN – PRODUTOS -->
+  <main class="container">
+    <section class="products-grid" id="products-grid">
+      <!-- Os cards serão criados pelo JavaScript -->
+    </section>
+  </main>
 
-  <div class="card-produto">
-    <img src="https://images.unsplash.com/photo-1585238342028-4bbc8b3f5a0a" alt="Produto">
+  <!-- MODAL DO PERFIL DO VENDEDOR -->
+  <div class="modal" id="seller-modal">
+    <div class="modal-content">
+      <button class="close-modal" id="close-modal">×</button>
+      
+      <div class="seller-header">
+        <img id="modal-seller-photo" class="seller-large-photo" src="" alt="Vendedor">
+        <div>
+          <h2 id="modal-seller-name"></h2>
+          <p id="modal-seller-class"></p>
+          <div class="seller-meta">
+            <span id="modal-seller-rating"></span>
+            <span id="modal-seller-experience"></span>
+            <span id="modal-seller-status"></span>
+          </div>
+        </div>
+      </div>
 
-    <h3>Coca-Cola</h3>
-    <p class="preco">200 Kz</p>
-
-    <div class="vendedor">
-      <img src="https://randomuser.me/api/portraits/men/45.jpg" alt="Vendedor">
-      <span>João Silva</span>
+      <h3>Produtos à venda</h3>
+      <div class="seller-products" id="modal-seller-products">
+        <!-- Cards gerados pelo JS -->
+      </div>
     </div>
   </div>
 
-  <div class="card-produto">
-    <img src="https://images.unsplash.com/photo-1604908177522-432e6b7f4c60" alt="Produto">
-
-    <h3>Pão com Hambúrguer</h3>
-    <p class="preco">150 Kz</p>
-
-    <div class="vendedor">
-      <img src="https://randomuser.me/api/portraits/women/32.jpg" alt="Vendedora">
-      <span>Maria Lopes</span>
+  <!-- LOCATION SECTION -->
+  <section class="location">
+    <div class="container">
+      <h2>Onde nos encontrar</h2>
+      <p>📍 Find us at the IMETRO campus, behind the multi-purpose field, in the food area.</p>
+      <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+           alt="Área de comida no campus" class="location-image">
     </div>
-  </div>
+  </section>
 
-</main>
+  <!-- FOOTER -->
+  <footer>
+    <p>Feito com carinho por estudantes do IMETRO</p>
+  </footer>
 
-<footer class="rodape">
-  <p>📍 Campus da IMETRO, atrás do campo multiuso, na banda da alimentação</p>
-</footer>
-
-<script src="script.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
