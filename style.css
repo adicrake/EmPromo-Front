@@ -1,78 +1,77 @@
-body{
-margin:0;
-font-family:Segoe UI, sans-serif;
-background:#f6f8fb;
+* {
+  box-sizing: border-box;
 }
 
-header{
-text-align:center;
-padding:30px;
-background:#0f4c81;
-color:white;
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background: #f2f4f8;
 }
 
-.produtos{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-gap:25px;
-padding:40px;
+/* TOPO */
+.topo {
+  background: #0b4ea2;
+  color: white;
+  text-align: center;
+  padding: 30px 15px;
 }
 
-.card{
-background:white;
-border-radius:18px;
-overflow:hidden;
-box-shadow:0 10px 25px rgba(0,0,0,0.1);
-transition:.3s;
-animation:fadeUp .6s ease;
+/* CONTAINER */
+.container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+  padding: 30px;
 }
 
-.card:hover{
-transform:translateY(-8px);
-box-shadow:0 20px 35px rgba(0,0,0,0.15);
+/* CARD PRODUTO */
+.card-produto {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+  padding: 15px;
+  text-align: center;
+  transition: transform 0.2s ease;
 }
 
-.produto-img{
-width:100%;
-height:200px;
-object-fit:cover;
+.card-produto:hover {
+  transform: translateY(-5px);
 }
 
-.info{
-padding:15px;
+.card-produto img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  border-radius: 10px;
 }
 
-.preco{
-color:#f5b400;
-font-weight:bold;
-font-size:18px;
+/* PREÇO */
+.preco {
+  color: #f2b705;
+  font-weight: bold;
+  font-size: 18px;
+  margin: 10px 0;
 }
 
-.estrelas{
-color:#f5b400;
-margin:6px 0;
+/* VENDEDOR */
+.vendedor {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 10px;
 }
 
-.vendedor{
-display:flex;
-align-items:center;
-gap:10px;
-margin-top:10px;
+.vendedor img {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
 }
 
-.vendedor img{
-width:40px;
-height:40px;
-border-radius:50%;
-object-fit:cover;
-}
-
-.online{
-color:green;
-font-size:12px;
-}
-
-@keyframes fadeUp{
-from{opacity:0;transform:translateY(20px);}
-to{opacity:1;transform:translateY(0);}
+/* RODAPÉ */
+.rodape {
+  background: #eaeaea;
+  text-align: center;
+  padding: 15px;
+  font-size: 14px;
 }
