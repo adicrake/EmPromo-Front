@@ -1,41 +1,49 @@
 <!DOCTYPE html>
 <html lang="pt">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LevaAqui</title>
-<link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LevaAqui</title>
+  <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
-<header>
+<header class="topo">
   <h1>LevaAqui</h1>
-  <p>Venda e compra de produtos no campus da IMETRO</p>
+  <p>Compra e venda de produtos no campus da IMETRO</p>
 </header>
 
-<section class="produtos">
+<main class="container">
 
-<div class="card">
-  <img src="https://images.unsplash.com/photo-1601924638867-3ec62d7b7f8b" class="produto-img">
+  <div class="card-produto">
+    <img src="https://images.unsplash.com/photo-1585238342028-4bbc8b3f5a0a" alt="Produto">
 
-  <div class="info">
     <h3>Coca-Cola</h3>
-    <span class="preco">200 Kz</span>
-
-    <div class="estrelas">★★★★★</div>
+    <p class="preco">200 Kz</p>
 
     <div class="vendedor">
-      <img src="https://randomuser.me/api/portraits/men/32.jpg">
-      <div>
-        <small>João Silva</small>
-        <span class="online">🟢 Online</span>
-      </div>
+      <img src="https://randomuser.me/api/portraits/men/45.jpg" alt="Vendedor">
+      <span>João Silva</span>
     </div>
   </div>
-</div>
 
-</section>
+  <div class="card-produto">
+    <img src="https://images.unsplash.com/photo-1604908177522-432e6b7f4c60" alt="Produto">
+
+    <h3>Pão com Hambúrguer</h3>
+    <p class="preco">150 Kz</p>
+
+    <div class="vendedor">
+      <img src="https://randomuser.me/api/portraits/women/32.jpg" alt="Vendedora">
+      <span>Maria Lopes</span>
+    </div>
+  </div>
+
+</main>
+
+<footer class="rodape">
+  <p>📍 Campus da IMETRO, atrás do campo multiuso, na banda da alimentação</p>
+</footer>
 
 <script src="script.js"></script>
 </body>
