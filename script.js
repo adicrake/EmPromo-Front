@@ -1,126 +1,175 @@
-// Dados fictícios – depois vocês podem aumentar
-const sellers = [
+// Dados iniciais (seed) — serão salvos no localStorage na primeira visita
+const INITIAL_SELLERS = [
   {
     id: 1,
-    name: "Maria K.",
-    photo: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150",
-    class: "Sala 3B – Informática",
+    name: "Ana Silva",
+    photo: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=120",
+    classroom: "Engenharia Informática – Sala 3.2",
+    experience: "Vende há 11 meses",
     rating: 4.8,
-    experience: "Vende há 5 meses",
-    status: "online", // "online" ou "stand"
-    products: [
-      { name: "Bolo de cenoura", price: 800, image: "https://images.unsplash.com/photo-1557925920-a7977b3b8922?w=400" },
-      { name: "Sumo de laranja natural", price: 300, image: "https://images.unsplash.com/photo-1613478223719-2ab802602423?w=400" },
-      { name: "Pastel de queijo", price: 150, image: "https://images.unsplash.com/photo-1559056199-8a572b9a0e8a?w=400" }
-    ]
+    isOnline: true
   },
   {
     id: 2,
-    name: "João P.",
-    photo: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150",
-    class: "Sala 2A – Eletrotécnica",
-    rating: 4.3,
-    experience: "Vende desde 2024",
-    status: "stand",
-    products: [
-      { name: "Coxinha de frango", price: 100, image: "https://images.unsplash.com/photo-1604908177732-8c12e691d5d8?w=400" },
-      { name: "Água mineral 1.5L", price: 200, image: "https://images.unsplash.com/photo-1616118132534-381148898bb4?w=400" }
-    ]
-  },
-  // Adicionem mais vendedores aqui...
+    name: "João Mendes",
+    photo: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=120",
+    classroom: "Gestão de Empresas – Sala 1.4",
+    experience: "Vende há 1 ano e 3 meses",
+    rating: 4.6,
+    isOnline: false
+  }
 ];
 
-// Função para criar estrelas ★
-function createStars(rating) {
-  const full = Math.floor(rating);
-  const half = rating % 1 >= 0.5 ? 1 : 0;
-  const empty = 5 - full - half;
-  return '★'.repeat(full) + (half ? '½' : '') + '☆'.repeat(empty);
+const INITIAL_PRODUCTS = [
+  {
+    id: 101,
+    name: "Bolo de chocolate caseiro (8 fatias)",
+    price: 1800,
+    image: "https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=400",
+    rating: 4.9,
+    sellerId: 1
+  },
+  {
+    id: 102,
+    name: "Sumo natural de laranja 1L",
+    price: 700,
+    image: "https://images.unsplash.com/photo-1613478223719-2ab802602423?w=400",
+    rating: 4.7,
+    sellerId: 1
+  },
+  {
+    id: 103,
+    name: "Sanduíche misto completo",
+    price: 900,
+    image: "https://images.unsplash.com/photo-1559054663-e8d23213f55c?w=400",
+    rating: 4.5,
+    sellerId: 2
+  },
+  {
+    id: 104,
+    name: "Brigadeiro gourmet (cx 12un)",
+    price: 1200,
+    image: "https://images.unsplash.com/photo-1587536872896-69409c2f3a8c?w=400",
+    rating: 4.8,
+    sellerId: 2
+  }
+];
+
+// Carregar ou inicializar dados
+function initData() {
+  if (!localStorage.getItem("levaAquiSellers")) {
+    localStorage.setItem("levaAquiSellers", JSON.stringify(INITIAL_SELLERS));
+  }
+  if (!localStorage.getItem("levaAquiProducts")) {
+    localStorage.setItem("levaAquiProducts", JSON.stringify(INITIAL_PRODUCTS));
+  }
 }
 
-// Renderizar todos os produtos na página principal
+function getSellers() {
+  return JSON.parse(localStorage.getItem("levaAquiSellers") || "[]");
+}
+
+function getProducts() {
+  return JSON.parse(localStorage.getItem("levaAquiProducts") || "[]");
+}
+
+function getStars(rating) {
+  const full = Math.floor(rating);
+  const part = rating % 1 >= 0.3 ? (rating % 1 >= 0.7 ? "★" : "½") : "";
+  const empty = 5 - full - (part ? 1 : 0);
+  return "★".repeat(full) + part + "☆".repeat(empty);
+}
+
 function renderProducts() {
   const grid = document.getElementById("products-grid");
-  grid.innerHTML = "";
+  if (!grid) return;
 
-  sellers.forEach(seller => {
-    seller.products.forEach(product => {
-      const card = document.createElement("div");
-      card.className = "product-card";
-      
-      card.innerHTML = `
-        <img class="product-image" src="${product.image}" alt="${product.name}">
-        <div class="product-info">
-          <h3 class="product-name">${product.name}</h3>
-          <div class="price">${product.price.toLocaleString()} Kz</div>
-          <div class="stars">${createStars(seller.rating)}</div>
-          
-          <div class="seller-mini" data-seller-id="${seller.id}">
-            <img src="${seller.photo}" alt="${seller.name}">
-            <div>
-              <strong>${seller.name}</strong>
+  grid.innerHTML = "";
+  const products = getProducts();
+  const sellers = getSellers();
+
+  products.forEach(product => {
+    const seller = sellers.find(s => s.id === product.sellerId) || {};
+
+    const card = document.createElement("div");
+    card.className = "product-card";
+
+    card.innerHTML = `
+      <img class="product-image" src="${product.image}" alt="${product.name}" loading="lazy">
+      <div class="product-body">
+        <h3 class="product-name">${product.name}</h3>
+        <div class="price">${product.price.toLocaleString()} Kz</div>
+        <div class="rating">${getStars(product.rating)}</div>
+
+        <div class="seller-row">
+          <img class="seller-avatar" src="${seller.photo || 'https://via.placeholder.com/48'}" alt="${seller.name || 'Vendedor'}">
+          <div class="seller-info">
+            <div class="seller-name" data-seller-id="${seller.id || ''}">
+              ${seller.name || "Vendedor"}
             </div>
           </div>
         </div>
-      `;
+      </div>
+    `;
 
-      // Clica no mini-perfil do vendedor → abre modal
-      card.querySelector(".seller-mini").addEventListener("click", (e) => {
-        e.stopPropagation();
-        openSellerModal(seller.id);
-      });
-
-      grid.appendChild(card);
+    // Clique no nome do vendedor → abre modal
+    card.querySelector(".seller-name")?.addEventListener("click", (e) => {
+      const sellerId = Number(e.target.dataset.sellerId);
+      if (sellerId) showSellerProfile(sellerId);
     });
+
+    grid.appendChild(card);
   });
 }
 
-// Abre o modal com o perfil do vendedor
-function openSellerModal(sellerId) {
+function showSellerProfile(sellerId) {
+  const sellers = getSellers();
   const seller = sellers.find(s => s.id === sellerId);
   if (!seller) return;
 
-  document.getElementById("modal-seller-photo").src = seller.photo;
-  document.getElementById("modal-seller-name").textContent = seller.name;
-  document.getElementById("modal-seller-class").textContent = seller.class;
-  document.getElementById("modal-seller-rating").innerHTML = `⭐ ${seller.rating} • `;
-  document.getElementById("modal-seller-experience").textContent = seller.experience;
-  
-  const statusEl = document.getElementById("modal-seller-status");
-  statusEl.textContent = seller.status === "online" ? "🟢 Online agora" : "🔴 No stand";
-  statusEl.className = seller.status === "online" ? "status-online" : "status-offline";
+  const modal = document.getElementById("seller-modal");
+  const content = document.getElementById("seller-profile-content");
 
-  // Produtos do vendedor no modal
-  const productsDiv = document.getElementById("modal-seller-products");
-  productsDiv.innerHTML = "";
-  
-  seller.products.forEach(p => {
-    const miniCard = document.createElement("div");
-    miniCard.className = "product-card";
-    miniCard.innerHTML = `
-      <img class="product-image" src="${p.image}" alt="${p.name}" style="height: 160px;">
-      <div class="product-info">
-        <h3 class="product-name" style="font-size:1.1rem;">${p.name}</h3>
-        <div class="price" style="font-size:1.25rem;">${p.price.toLocaleString()} Kz</div>
-      </div>
-    `;
-    productsDiv.appendChild(miniCard);
-  });
+  const statusClass = seller.isOnline ? "online" : "stand";
+  const statusText = seller.isOnline ? "🟢 Online agora" : "🔴 Disponível na banca";
 
-  document.getElementById("seller-modal").style.display = "flex";
+  const products = getProducts().filter(p => p.sellerId === sellerId);
+
+  let productsHTML = "<ul>";
+  if (products.length === 0) {
+    productsHTML += "<li style='color:#64748b;'>Ainda sem produtos listados</li>";
+  } else {
+    products.forEach(p => {
+      productsHTML += `<li>${p.name} – ${p.price.toLocaleString()} Kz</li>`;
+    });
+  }
+  productsHTML += "</ul>";
+
+  content.innerHTML = `
+    <img src="${seller.photo}" alt="${seller.name}">
+    <h2>${seller.name}</h2>
+    <div class="classroom">${seller.classroom}</div>
+    <div class="experience">${seller.experience}</div>
+    <div class="rating">${getStars(seller.rating)}</div>
+
+    <div class="availability ${statusClass}">${statusText}</div>
+
+    <div class="seller-products">
+      <h3>Produtos à venda</h3>
+      ${productsHTML}
+    </div>
+  `;
+
+  modal.style.display = "flex";
 }
 
 // Fechar modal
-document.getElementById("close-modal").addEventListener("click", () => {
-  document.getElementById("seller-modal").style.display = "none";
-});
-
-// Clica fora do modal → fecha
-document.getElementById("seller-modal").addEventListener("click", (e) => {
-  if (e.target === document.getElementById("seller-modal")) {
+document.addEventListener("click", e => {
+  if (e.target.matches(".modal-close, #seller-modal")) {
     document.getElementById("seller-modal").style.display = "none";
   }
 });
 
-// Iniciar
+// Inicialização
+initData();
 renderProducts();
