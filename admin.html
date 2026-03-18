@@ -1,70 +1,73 @@
 <!DOCTYPE html>
 <html lang="pt">
 <head>
-<meta charset="UTF-8">
-<title>LevaAqui Admin</title>
-<link rel="stylesheet" href="admin.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>LevaAqui Admin – Gerir Produtos e Vendedores</title>
+  <link rel="stylesheet" href="../style.css">
+  <link rel="stylesheet" href="admin.css">
 </head>
-
 <body>
 
-<div id="loginBox" class="login">
-<h2>LevaAqui | Administração</h2>
-<input id="user" placeholder="Usuário">
-<input id="pass" type="password" placeholder="Senha">
-<button onclick="login()">Entrar</button>
-</div>
+  <header>
+    <div class="container header-content">
+      <div class="brand">
+        <h1>LevaAqui Admin</h1>
+        <p>Gestão de produtos e vendedores – IMETRO</p>
+      </div>
+      <a href="../index.html" class="admin-btn">← Voltar à Loja</a>
+    </div>
+  </header>
 
-<div id="dashboard" class="dashboard">
+  <main class="container">
 
-<aside>
-<h2>LevaAqui</h2>
-<button onclick="openVendors()">Vendedores</button>
-<button onclick="openProducts()">Produtos</button>
-</aside>
+    <section class="admin-section">
+      <h2>Adicionar Novo Vendedor</h2>
+      <form id="seller-form">
+        <input type="text" id="seller-name" placeholder="Nome completo" required>
+        <input type="text" id="seller-classroom" placeholder="Sala / Curso (ex: Engenharia 2.1)" required>
+        <input type="url" id="seller-photo" placeholder="URL da foto (ex: https://...)" required>
+        <input type="text" id="seller-experience" placeholder="Experiência (ex: Vende há 6 meses)" required>
+        <input type="number" id="seller-rating" step="0.1" min="0" max="5" placeholder="Classificação (0-5)" value="4.5" required>
+        <label><input type="checkbox" id="seller-online"> Online agora</label>
+        <button type="submit">Adicionar Vendedor</button>
+      </form>
+    </section>
 
-<main>
+    <section class="admin-section">
+      <h2>Adicionar Novo Produto</h2>
+      <form id="product-form">
+        <input type="text" id="product-name" placeholder="Nome do produto" required>
+        <input type="number" id="product-price" placeholder="Preço em Kz" required>
+        <input type="url" id="product-image" placeholder="URL da imagem" required>
+        <input type="number" id="product-rating" step="0.1" min="0" max="5" placeholder="Classificação (0-5)" value="4.5" required>
+        <select id="product-seller" required>
+          <option value="">Selecione o vendedor</option>
+          <!-- preenchido via JS -->
+        </select>
+        <button type="submit">Adicionar Produto</button>
+      </form>
+    </section>
 
-<section id="vendorsBox" class="box">
-<h3>Cadastrar Vendedor</h3>
-<input id="vName" placeholder="Nome">
-<input id="vSala" placeholder="Sala">
-<input type="file" id="vImg">
+    <section class="admin-section">
+      <h2>Lista de Vendedores</h2>
+      <div id="sellers-list"></div>
+    </section>
 
-<button onclick="saveVendor()">Guardar Vendedor</button>
+    <section class="admin-section">
+      <h2>Lista de Produtos</h2>
+      <div id="products-list"></div>
+    </section>
 
-<div id="vendorsList"></div>
-</section>
+  </main>
 
-<section id="productsBox" class="box">
-<h3>Cadastrar Produto</h3>
+  <footer>
+    <div class="container">
+      <p>LevaAqui Admin – Projeto IMETRO</p>
+    </div>
+  </footer>
 
-<input id="pName" placeholder="Nome do Produto">
-<input id="pPrice" type="number" placeholder="Preço">
-
-<select id="pCat">
-<option>Gelados</option>
-<option>Bebidas</option>
-<option>Salgados</option>
-<option>Doces</option>
-<option>Fast Food</option>
-<option>Lanches</option>
-<option>Outros</option>
-</select>
-
-<select id="pVendor"></select>
-
-<input type="file" id="pImg">
-
-<button onclick="saveProduct()">Guardar Produto</button>
-
-<div id="productsList"></div>
-</section>
-
-</main>
-
-</div>
-
-<script src="admin.js"></script>
+  <script src="../script.js"></script>
+  <script src="admin.js"></script>
 </body>
 </html>
