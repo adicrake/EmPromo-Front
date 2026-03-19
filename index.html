@@ -8,37 +8,28 @@
 </head>
 <body>
 
-  <header>
-    <div class="container header-content">
-      <div class="brand">
-        <h1>LevaAqui</h1>
-        <p>Compra e vende produtos dentro do campus do IMETRO</p>
-      </div>
-      <a href="admin/admin.html" class="admin-btn" aria-label="Painel de administração">
-        🔐 Admin
-      </a>
+  <header class="hero">
+    <div class="container">
+      <h1>Bem-vindo às lojas virtuais da IMETRO</h1>
+      <p class="hero-subtitle">Compre tudo Aqui! 🍔🥤📚</p>
+      <a href="admin/admin.html" class="btn-admin">🔐 Área Admin</a>
     </div>
   </header>
 
-  <main class="container">
-    <section class="products-grid" id="products-grid">
-      <!-- product cards gerados via JS -->
-    </section>
+  <main class="container main-content">
+    <section class="products" id="products-grid"></section>
   </main>
 
-  <!-- Modal de perfil do vendedor -->
   <div class="modal" id="seller-modal">
-    <div class="modal-content">
-      <button class="modal-close" aria-label="Fechar">×</button>
-      <div class="seller-profile" id="seller-profile-content">
-        <!-- conteúdo dinâmico -->
-      </div>
+    <div class="modal-box">
+      <button class="close-modal">×</button>
+      <div id="seller-profile"></div>
     </div>
   </div>
 
-  <footer>
+  <footer class="footer">
     <div class="container">
-      <p>📍 Encontra-nos no campus do IMETRO, atrás do campo multiuso, na zona de alimentação.</p>
+      <p>📍 Campus IMETRO, atrás do campo multiuso, zona de alimentação. Feito por estudantes IMETRO ❤️</p>
     </div>
   </footer>
 
