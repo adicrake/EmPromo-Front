@@ -1,38 +1,461 @@
 <!DOCTYPE html>
 <html lang="pt">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>LevaAqui – IMETRO</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LevaAqui - Marketplace IMETRO</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <a href="#home" class="logo">
+                    <div class="logo-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+                            <line x1="3" y1="6" x2="21" y2="6"></line>
+                            <path d="M16 10a4 4 0 0 1-8 0"></path>
+                        </svg>
+                    </div>
+                    <div>
+                        <h1 class="logo-title">LevaAqui</h1>
+                        <p class="logo-subtitle">IMETRO Marketplace</p>
+                    </div>
+                </a>
 
-  <header class="hero">
-    <div class="container">
-      <h1>Bem-vindo às lojas virtuais da IMETRO</h1>
-      <p class="hero-subtitle">Compre tudo Aqui! 🍔🥤📚</p>
-      <a href="admin/admin.html" class="btn-admin">🔐 Área Admin</a>
+                <nav class="nav-desktop">
+                    <a href="#home" class="nav-link">Início</a>
+                    <a href="#products" class="nav-link">Produtos</a>
+                    <a href="#vendors" class="nav-link">Vendedores</a>
+                    <a href="#location" class="nav-link">Localização</a>
+                    <a href="#about" class="nav-link">Sobre</a>
+                    <button class="btn-admin" onclick="showAdminPanel()">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"></path>
+                            <circle cx="12" cy="12" r="3"></circle>
+                        </svg>
+                        Admin
+                    </button>
+                </nav>
+
+                <button class="mobile-menu-btn" onclick="toggleMobileMenu()">
+                    <svg class="menu-icon" xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="3" y1="12" x2="21" y2="12"></line>
+                        <line x1="3" y1="6" x2="21" y2="6"></line>
+                        <line x1="3" y1="18" x2="21" y2="18"></line>
+                    </svg>
+                    <svg class="close-icon hidden" xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                </button>
+            </div>
+
+            <nav class="mobile-menu hidden">
+                <a href="#home" class="mobile-menu-link">Início</a>
+                <a href="#products" class="mobile-menu-link">Produtos</a>
+                <a href="#vendors" class="mobile-menu-link">Vendedores</a>
+                <a href="#location" class="mobile-menu-link">Localização</a>
+                <a href="#about" class="mobile-menu-link">Sobre</a>
+                <button class="btn-admin-mobile" onclick="showAdminPanel()">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"></path>
+                        <circle cx="12" cy="12" r="3"></circle>
+                    </svg>
+                    Admin
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <div class="hero-left">
+                    <div class="hero-badge">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"></path>
+                            <path d="M5 3v4"></path>
+                            <path d="M19 17v4"></path>
+                            <path d="M3 5h4"></path>
+                            <path d="M17 19h4"></path>
+                        </svg>
+                        <span>Plataforma Oficial do IMETRO</span>
+                    </div>
+                    <h1 class="hero-title">
+                        Bem-vindo ao
+                        <span class="hero-title-highlight">LevaAqui</span>
+                    </h1>
+                    <p class="hero-description">
+                        O marketplace feito por estudantes do IMETRO, para estudantes. 
+                        Compre e venda produtos diretamente no campus!
+                    </p>
+                    <div class="hero-buttons">
+                        <a href="#products" class="btn-primary">Ver Produtos</a>
+                        <a href="#about" class="btn-secondary">Saiba Mais</a>
+                    </div>
+                    <div class="hero-stats">
+                        <div class="stat-card">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+                                <line x1="3" y1="6" x2="21" y2="6"></line>
+                                <path d="M16 10a4 4 0 0 1-8 0"></path>
+                            </svg>
+                            <p class="stat-number">50+</p>
+                            <p class="stat-label">Produtos</p>
+                        </div>
+                        <div class="stat-card">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
+                                <circle cx="9" cy="7" r="4"></circle>
+                                <path d="M22 21v-2a4 4 0 0 0-3-3.87"></path>
+                                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                            </svg>
+                            <p class="stat-number">15+</p>
+                            <p class="stat-label">Vendedores</p>
+                        </div>
+                        <div class="stat-card">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="22 7 13.5 15.5 8.5 10.5 2 17"></polyline>
+                                <polyline points="16 7 22 7 22 13"></polyline>
+                            </svg>
+                            <p class="stat-number">100%</p>
+                            <p class="stat-label">Estudantes</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="hero-right">
+                    <div class="hero-image">
+                        <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=600&h=600&fit=crop" alt="Estudantes IMETRO">
+                        <div class="hero-image-overlay"></div>
+                    </div>
+                    <div class="hero-badge-bottom">
+                        <p class="badge-label">Feito por:</p>
+                        <p class="badge-text">Estudantes IMETRO</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="hero-decoration-1"></div>
+        <div class="hero-decoration-2"></div>
+    </section>
+
+    <!-- Tab Navigation -->
+    <div class="tab-navigation">
+        <div class="container">
+            <div class="tabs">
+                <button class="tab active" data-tab="products" onclick="switchTab('products')">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+                        <line x1="3" y1="6" x2="21" y2="6"></line>
+                        <path d="M16 10a4 4 0 0 1-8 0"></path>
+                    </svg>
+                    Produtos
+                </button>
+                <button class="tab" data-tab="vendors" onclick="switchTab('vendors')">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="9" cy="7" r="4"></circle>
+                        <path d="M22 21v-2a4 4 0 0 0-3-3.87"></path>
+                        <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                    </svg>
+                    Vendedores
+                </button>
+            </div>
+        </div>
     </div>
-  </header>
 
-  <main class="container main-content">
-    <section class="products" id="products-grid"></section>
-  </main>
+    <!-- Products Section -->
+    <section id="products" class="products-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Produtos Disponíveis</h2>
+                <p class="section-description">Descubra os melhores produtos do campus</p>
+            </div>
 
-  <div class="modal" id="seller-modal">
-    <div class="modal-box">
-      <button class="close-modal">×</button>
-      <div id="seller-profile"></div>
+            <div class="search-bar">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <path d="m21 21-4.35-4.35"></path>
+                </svg>
+                <input type="text" id="searchInput" placeholder="Pesquisar produtos ou vendedores..." onkeyup="filterProducts()">
+            </div>
+
+            <div class="category-filter">
+                <button class="category-btn active" data-category="todos" onclick="selectCategory('todos')">
+                    <span class="category-icon">🛍️</span>
+                    <span>Todos</span>
+                </button>
+                <button class="category-btn" data-category="gelados" onclick="selectCategory('gelados')">
+                    <span class="category-icon">🍦</span>
+                    <span>Gelados</span>
+                </button>
+                <button class="category-btn" data-category="bebidas" onclick="selectCategory('bebidas')">
+                    <span class="category-icon">🥤</span>
+                    <span>Bebidas</span>
+                </button>
+                <button class="category-btn" data-category="salgados" onclick="selectCategory('salgados')">
+                    <span class="category-icon">🥟</span>
+                    <span>Salgados</span>
+                </button>
+                <button class="category-btn" data-category="doces" onclick="selectCategory('doces')">
+                    <span class="category-icon">🍰</span>
+                    <span>Doces</span>
+                </button>
+                <button class="category-btn" data-category="roupas" onclick="selectCategory('roupas')">
+                    <span class="category-icon">👕</span>
+                    <span>Roupas</span>
+                </button>
+                <button class="category-btn" data-category="acessorios" onclick="selectCategory('acessorios')">
+                    <span class="category-icon">👜</span>
+                    <span>Acessórios</span>
+                </button>
+                <button class="category-btn" data-category="diversos" onclick="selectCategory('diversos')">
+                    <span class="category-icon">📦</span>
+                    <span>Diversos</span>
+                </button>
+            </div>
+
+            <div id="productsGrid" class="products-grid"></div>
+        </div>
+    </section>
+
+    <!-- Vendors Section -->
+    <section id="vendors" class="vendors-section hidden">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Nossos Vendedores</h2>
+                <p class="section-description">Conheça os estudantes que tornam isso possível</p>
+            </div>
+            <div id="vendorsGrid" class="vendors-grid"></div>
+        </div>
+    </section>
+
+    <!-- Location Section -->
+    <section id="location" class="location-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Localização</h2>
+                <p class="section-description">Encontre-nos no campus do IMETRO</p>
+            </div>
+            <div class="location-card">
+                <div class="location-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path>
+                        <circle cx="12" cy="10" r="3"></circle>
+                    </svg>
+                </div>
+                <h3 class="location-title">Instituto Superior Politécnico de Angola (IMETRO)</h3>
+                <p class="location-address">Luanda, Angola</p>
+                <p class="location-description">Visite nossos vendedores nas salas indicadas durante os horários de funcionamento.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Sobre o LevaAqui</h2>
+                <p class="section-description">Uma plataforma criada por estudantes, para estudantes</p>
+            </div>
+            <div class="about-content">
+                <div class="about-card">
+                    <div class="about-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M2 20a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8l-7 5V8l-7 5V4a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z"></path>
+                            <path d="M17 18h1"></path>
+                            <path d="M12 18h1"></path>
+                            <path d="M7 18h1"></path>
+                        </svg>
+                    </div>
+                    <h3 class="about-card-title">Missão</h3>
+                    <p class="about-card-text">Facilitar o comércio entre estudantes do IMETRO, criando uma comunidade mais conectada e colaborativa.</p>
+                </div>
+                <div class="about-card">
+                    <div class="about-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
+                            <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="about-card-title">Visão</h3>
+                    <p class="about-card-text">Ser a principal plataforma de marketplace estudantil em Angola, promovendo empreendedorismo jovem.</p>
+                </div>
+                <div class="about-card">
+                    <div class="about-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 2v20M2 12h20"></path>
+                        </svg>
+                    </div>
+                    <h3 class="about-card-title">Valores</h3>
+                    <p class="about-card-text">Transparência, confiança, comunidade e inovação são os pilares que guiam nossa plataforma.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <h3 class="footer-logo">LevaAqui</h3>
+                    <p class="footer-description">Marketplace feito por estudantes do IMETRO, para estudantes.</p>
+                </div>
+                <div class="footer-links">
+                    <h4 class="footer-title">Links Rápidos</h4>
+                    <a href="#products">Produtos</a>
+                    <a href="#vendors">Vendedores</a>
+                    <a href="#location">Localização</a>
+                    <a href="#about">Sobre</a>
+                </div>
+                <div class="footer-contact">
+                    <h4 class="footer-title">Contato</h4>
+                    <p>IMETRO - Luanda, Angola</p>
+                    <p>Email: info@levaaqui.ao</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 LevaAqui. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Admin Panel Modal -->
+    <div id="adminModal" class="modal hidden">
+        <div class="modal-overlay" onclick="hideAdminPanel()"></div>
+        <div class="modal-content admin-panel">
+            <div class="admin-header">
+                <h2>Painel Admin</h2>
+                <button class="close-btn" onclick="hideAdminPanel()">×</button>
+            </div>
+            <div id="adminContent" class="admin-content">
+                <!-- Login Form -->
+                <div id="loginForm" class="login-form">
+                    <div class="login-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                            <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                        </svg>
+                    </div>
+                    <h3>Autenticação Necessária</h3>
+                    <p>Digite a senha para acessar o painel</p>
+                    <input type="password" id="adminPassword" placeholder="Senha de administrador">
+                    <button onclick="adminLogin()">Entrar</button>
+                    <p class="admin-hint">Senha padrão: admin123</p>
+                </div>
+
+                <!-- Admin Dashboard -->
+                <div id="adminDashboard" class="hidden">
+                    <div class="admin-tabs">
+                        <button class="admin-tab active" onclick="showAdminTab('vendorsTab')">Vendedores</button>
+                    </div>
+                    <div id="vendorsTab" class="admin-tab-content">
+                        <div class="admin-toolbar">
+                            <h3>Gerenciar Vendedores e Produtos</h3>
+                            <button class="btn-add" onclick="showVendorForm()">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <line x1="12" y1="5" x2="12" y2="19"></line>
+                                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                                </svg>
+                                Novo Vendedor
+                            </button>
+                        </div>
+                        <div id="vendorsList" class="admin-vendors-list"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
 
-  <footer class="footer">
-    <div class="container">
-      <p>📍 Campus IMETRO, atrás do campo multiuso, zona de alimentação. Feito por estudantes IMETRO ❤️</p>
+    <!-- Vendor Form Modal -->
+    <div id="vendorFormModal" class="modal hidden">
+        <div class="modal-overlay" onclick="hideVendorForm()"></div>
+        <div class="modal-content vendor-form-modal">
+            <div class="modal-header">
+                <h2 id="vendorFormTitle">Novo Vendedor</h2>
+                <button class="close-btn" onclick="hideVendorForm()">×</button>
+            </div>
+            <form id="vendorForm" onsubmit="saveVendor(event)">
+                <div class="form-section">
+                    <h3>Informações do Vendedor</h3>
+                    <input type="hidden" id="vendorId">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Nome Completo *</label>
+                            <input type="text" id="vendorName" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Sala de Aula *</label>
+                            <input type="text" id="vendorClassroom" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Foto do Vendedor *</label>
+                        <input type="url" id="vendorPhoto" placeholder="https://exemplo.com/foto.jpg" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Especialidade *</label>
+                        <input type="text" id="vendorSpecialty" placeholder="Ex: Gelados e Doces" required>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Horário Início *</label>
+                            <input type="time" id="vendorScheduleStart" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Horário Fim *</label>
+                            <input type="time" id="vendorScheduleEnd" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Classificação *</label>
+                        <select id="vendorRating">
+                            <option value="5">5 Estrelas</option>
+                            <option value="4.5">4.5 Estrelas</option>
+                            <option value="4">4 Estrelas</option>
+                            <option value="3.5">3.5 Estrelas</option>
+                            <option value="3">3 Estrelas</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-section">
+                    <h3>Contatos e Redes Sociais</h3>
+                    <div class="form-group">
+                        <label>WhatsApp</label>
+                        <input type="text" id="vendorWhatsapp" placeholder="+244 923 456 789">
+                    </div>
+                    <div class="form-group">
+                        <label>Instagram</label>
+                        <input type="text" id="vendorInstagram" placeholder="@username">
+                    </div>
+                    <div class="form-group">
+                        <label>Facebook</label>
+                        <input type="text" id="vendorFacebook" placeholder="https://facebook.com/perfil">
+                    </div>
+                </div>
+
+                <div class="form-actions">
+                    <button type="button" class="btn-cancel" onclick="hideVendorForm()">Cancelar</button>
+                    <button type="submit" class="btn-save">Salvar</button>
+                </div>
+            </form>
+        </div>
     </div>
-  </footer>
 
-  <script src="script.js"></script>
+    <!-- Vendor Page Modal -->
+    <div id="vendorPageModal" class="modal hidden">
+        <div class="modal-overlay" onclick="hideVendorPage()"></div>
+        <div class="modal-content vendor-page-modal">
+            <div id="vendorPageContent"></div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
 </body>
 </html>
