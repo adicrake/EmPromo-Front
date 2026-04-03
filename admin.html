@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LevaAqui - Painel Administrativo</title>
+    <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+    <!-- Admin Login -->
+    <div id="adminLogin" class="admin-login">
+        <div class="login-box">
+            <div class="login-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                    <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                </svg>
+            </div>
+            <h2>Painel Administrativo</h2>
+            <p>Digite a senha para acessar</p>
+            <form onsubmit="adminLogin(event)">
+                <input type="password" id="adminPassword" placeholder="Senha" required>
+                <button type="submit">Entrar</button>
+            </form>
+            <a href="index.html" class="back-link">← Voltar ao Site</a>
+            <p class="hint">Senha padrão: admin123</p>
+        </div>
+    </div>
+
+    <!-- Admin Dashboard -->
+    <div id="adminDashboard" class="hidden">
+        <!-- Header -->
+        <header class="admin-header">
+            <div class="admin-header-content">
+                <h1>Painel Administrativo</h1>
+                <div class="admin-header-actions">
+                    <a href="index.html" class="btn-site">Ver Site</a>
+                    <button onclick="adminLogout()" class="btn-logout">Sair</button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Stats -->
+        <div class="admin-stats">
+            <div class="stat-card pending">
+                <h4>Vendedores Pendentes</h4>
+                <p class="stat-number" id="statVendorsPending">0</p>
+            </div>
+            <div class="stat-card approved">
+                <h4>Vendedores Aprovados</h4>
+                <p class="stat-number" id="statVendorsApproved">0</p>
+            </div>
+            <div class="stat-card expired">
+                <h4>Itens Expirados</h4>
+                <p class="stat-number" id="statExpired">0</p>
+            </div>
+            <div class="stat-card products">
+                <h4>Produtos Pendentes</h4>
+                <p class="stat-number" id="statProductsPending">0</p>
+            </div>
+        </div>
+
+        <!-- Tabs -->
+        <div class="admin-tabs">
+            <button class="admin-tab active" data-tab="vendors-pending" onclick="switchAdminTab('vendors-pending')">
+                Vendedores Pendentes
+                <span class="tab-badge" id="badgeVendorsPending">0</span>
+            </button>
+            <button class="admin-tab" data-tab="vendors-approved" onclick="switchAdminTab('vendors-approved')">
+                Vendedores Aprovados
+                <span class="tab-badge" id="badgeVendorsApproved">0</span>
+            </button>
+            <button class="admin-tab" data-tab="products-pending" onclick="switchAdminTab('products-pending')">
+                Produtos Pendentes
+                <span class="tab-badge" id="badgeProductsPending">0</span>
+            </button>
+            <button class="admin-tab" data-tab="products-approved" onclick="switchAdminTab('products-approved')">
+                Produtos Aprovados
+                <span class="tab-badge" id="badgeProductsApproved">0</span>
+            </button>
+            <button class="admin-tab" data-tab="renewal" onclick="switchAdminTab('renewal')">
+                Renovação
+                <span class="tab-badge" id="badgeRenewal">0</span>
+            </button>
+        </div>
+
+        <!-- Content -->
+        <div id="adminContent" class="admin-content"></div>
+    </div>
+
+    <!-- Modal de Edição -->
+    <div id="editModal" class="modal hidden">
+        <div class="modal-overlay" onclick="closeEditModal()"></div>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modalTitle">Editar</h2>
+                <button class="close-btn" onclick="closeEditModal()">×</button>
+            </div>
+            <div id="modalContent"></div>
+        </div>
+    </div>
+
+    <script src="admin.js"></script>
+</body>
+</html>
