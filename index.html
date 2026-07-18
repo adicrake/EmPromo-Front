@@ -360,7 +360,6 @@
         import { getAuth } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
         import { getFirestore } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
-        // Substitua as credenciais abaixo pelas do console do seu projeto Firebase
         const firebaseConfig = {
             apiKey: "SUA_API_KEY",
             authDomain: "SEU_AUTH_DOMAIN",
@@ -370,17 +369,15 @@
             appId: "SUA_APP_ID"
         };
 
-        // Inicializa o Firebase
         const app = initializeApp(firebaseConfig);
         const auth = getAuth(app);
         const db = getFirestore(app);
 
-        // Disponibiliza as instâncias globalmente para o seu script.js caso necessário
         window.auth = auth;
         window.db = db;
     </script>
 
-    <!-- Seu Script Local -->
-    <script src="script.js"></script>
+    <!-- Seu Script Local Como Módulo -->
+    <script type="module" src="script.js"></script>
 </body>
 </html>
