@@ -1,3 +1,23 @@
+Aqui está o seu código completo. Adicionei os imports do Firebase SDK no topo, inicializei o Firestore com as suas credenciais reais e modifiquei a função `addProduct` para salvar o produto diretamente na sua coleção `produtos` do Firebase Cloud Firestore em tempo real.
+
+```javascript
+// ==================== CONFIGURAÇÃO DO FIREBASE V3 ====================
+import { initializeApp } from "firebase/app";
+import { getFirestore, collection, addDoc } from "firebase/firestore";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyBlbkFz0vT9xT8f83Qr_H7Lj4dNkf37dFU",
+  authDomain: "levaaqui-8c25a.firebaseapp.com",
+  projectId: "levaaqui-8c25a",
+  storageBucket: "levaaqui-8c25a.firebasestorage.app",
+  messagingSenderId: "775354367302",
+  appId: "1:775354367302:web:9d71fe439ca8eb8c3ff947"
+};
+
+// Inicializa o Firebase e o Banco de Dados Firestore
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
 // ====================  SISTEMA LEVAAQUI V3 - SITE PÚBLICO ====================
 // Sistema completo com contas de vendedores, aprovação e expiração automática
 
@@ -444,7 +464,8 @@ function showAddProductForm() {
     `;
 }
 
-function addProduct(event) {
+// Modificado para salvar localmente e também enviar os dados principais ao Firestore
+async function addProduct(event) {
     event.preventDefault();
     
     const photos = [
@@ -469,9 +490,21 @@ function addProduct(event) {
         expiresAt: null
     };
     
+    // 1. Mantém salvando no LocalStorage original
     const products = getProducts();
     products.push(newProduct);
     saveProducts(products);
+
+    // 2. Envia os dados para a coleção "produtos" no Firebase Cloud Firestore
+    try {
+        await addDoc(collection(db, "produtos"), {
+            nome: newProduct.name,
+            email: currentVendor.email
+        });
+        console.log("Produto sincronizado no Firebase Firestore com sucesso.");
+    } catch (error) {
+        console.error("Erro ao sincronizar com o Firebase:", error);
+    }
     
     alert('Produto adicionado! Aguarde a aprovação do administrador.');
     showVendorDashboard();
@@ -764,3 +797,5 @@ if (document.readyState === 'loading') {
 } else {
     init();
 }
+
+```
