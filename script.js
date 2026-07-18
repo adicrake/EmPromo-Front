@@ -1,3 +1,6 @@
+O código do seu script foi ajustado e está pronto. Adicionei os escopos globais em falta e sincronizei o estado para que os elementos visuais atualizem imediatamente após a execução das funções.
+
+```javascript
 // ==================== CONFIGURAÇÃO DO FIREBASE (CORRIGIDO PARA NAVEGADOR) ====================
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
 import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
@@ -17,7 +20,7 @@ const db = getFirestore(app);
 
 // ====================  SISTEMA LEVAAQUI V3 - SITE PÚBLICO ====================
 
-// Coloca as funções no escopo global para os botões do HTML voltarem a funcionar
+// Vinculação ao escopo global garantindo funcionamento dos botões HTML
 window.showVendorLogin = showVendorLogin;
 window.hideVendorLogin = hideVendorLogin;
 window.showVendorAuthTab = showVendorAuthTab;
@@ -33,6 +36,7 @@ window.selectCategory = selectCategory;
 window.filterProducts = filterProducts;
 window.showVendorPage = showVendorPage;
 window.hideVendorPage = hideVendorPage;
+window.renderVendorProducts = renderVendorProducts;
 
 let currentVendor = null;
 let selectedCategory = 'todos';
@@ -89,6 +93,9 @@ function checkExpiredItems() {
     if (hasChanges) {
         saveVendors(vendors);
         saveProducts(products);
+        updateStats();
+        renderProducts();
+        renderVendors();
     }
 }
 
@@ -485,15 +492,20 @@ function selectCategory(category) {
 }
 
 function filterProducts() {
-    searchQuery = document.getElementById('searchInput').value.toLowerCase();
+    const searchInput = document.getElementById('searchInput');
+    searchQuery = searchInput ? searchInput.value.toLowerCase() : '';
     renderProducts();
 }
 
 function updateStats() {
     const vendors = getVendors().filter(v => v.status === 'approved');
     const products = getProducts().filter(p => p.status === 'approved');
-    document.getElementById('statsProducts').textContent = products.length;
-    document.getElementById('statsVendors').textContent = vendors.length;
+    
+    const statsProducts = document.getElementById('statsProducts');
+    const statsVendors = document.getElementById('statsVendors');
+    
+    if (statsProducts) statsProducts.textContent = products.length;
+    if (statsVendors) statsVendors.textContent = vendors.length;
 }
 
 function renderStars(rating) {
@@ -570,17 +582,21 @@ function showVendorPage(vendorId) {
     const modal = document.getElementById('vendorPageModal');
     const content = document.getElementById('vendorPageContent');
     
-    content.innerHTML = `<h2>${vendor.name}</h2><p>Sala: ${vendor.classroom}</p><button onclick="hideVendorPage()">Fechar</button>`;
-    modal.classList.remove('hidden');
+    if (modal && content) {
+        content.innerHTML = `<h2>${vendor.name}</h2><p>Sala: ${vendor.classroom}</p><button onclick="hideVendorPage()">Fechar</button>`;
+        modal.classList.remove('hidden');
+    }
 }
 
 function hideVendorPage() {
-    document.getElementById('vendorPageModal').classList.add('hidden');
+    const modal = document.getElementById('vendorPageModal');
+    if (modal) modal.classList.add('hidden');
 }
 
 function setupEventListeners() {
     const searchInput = document.getElementById('searchInput');
     if (searchInput) {
+        searchInput.removeEventListener('input', filterProducts);
         searchInput.addEventListener('input', filterProducts);
     }
     setInterval(checkExpiredItems, 60000);
@@ -591,3 +607,5 @@ if (document.readyState === 'loading') {
 } else {
     init();
 }
+
+```
